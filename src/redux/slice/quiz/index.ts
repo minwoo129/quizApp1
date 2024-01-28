@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {quizInitialState as initialState} from '../../state';
-import {getQuestionsResponse} from './types';
+import {clearQuizDataAction, getQuestionsResponse} from './types';
 import {createPromiseThunk} from '../../lib/AsyncUtils';
 import {ConvertQuestions} from './additionalFunctions';
 
@@ -19,7 +19,11 @@ export const getQuestions = createPromiseThunk<getQuestionsResponse>({
 const quizSlice = createSlice({
   name: 'quiz',
   initialState,
-  reducers: {},
+  reducers: {
+    clearQuizData: (state, action: clearQuizDataAction) => {
+      state.questions = null;
+    },
+  },
   extraReducers: builder => {
     // getQuestions =============================================================
     builder.addCase(getQuestions.pending, (state, action) => {});
@@ -34,4 +38,4 @@ const quizSlice = createSlice({
 });
 
 export default quizSlice.reducer;
-export const {} = quizSlice.actions;
+export const {clearQuizData} = quizSlice.actions;
