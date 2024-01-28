@@ -1,12 +1,24 @@
 export type QuizContextType = {
-  //state: QuizContextState
+  state: QuizContextState;
+  setState: QuizContextSetState;
 };
 
 export type QuizContextState = {
-  questions: Question[];
+  /** 선택한 카테고리 idx */
+  categoryIdx: number;
+  /** 선택한 난이도 idx */
+  levelIdx: number;
 };
 
-export type Question = {
-  type: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+export type QuizContextSetState = {
+  /**
+   * 선택한 카테고리 idx 설정
+   * - 연결 데이터: categoryIdx
+   */
+  setCategoryIdx: (idx: number) => void;
+  /**
+   * 선택한 난이도 idx 설정
+   * - 연결 데이터: levelIdx
+   */
+  setLevelIdx: (idx: number) => void;
 };
