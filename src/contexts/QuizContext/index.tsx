@@ -9,11 +9,18 @@ import {
 const QuizContext = createContext<QuizContextType>({
   state: defState,
   setState: defSetState,
+  unmountQuizPage: () => {},
 });
 
 export const QuizContextProvider: ProviderType = ({children}) => {
   const [categoryIdx, setCategoryIdx] = useState(defState.categoryIdx);
   const [levelIdx, setLevelIdx] = useState(defState.levelIdx);
+
+  const unmountQuizPage = () => {
+    setCategoryIdx(defState.categoryIdx);
+    setLevelIdx(defState.levelIdx);
+  };
+
   return (
     <QuizContext.Provider
       value={{
@@ -25,6 +32,7 @@ export const QuizContextProvider: ProviderType = ({children}) => {
           setCategoryIdx,
           setLevelIdx,
         },
+        unmountQuizPage,
       }}>
       {children}
     </QuizContext.Provider>

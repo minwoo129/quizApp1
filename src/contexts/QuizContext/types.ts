@@ -1,6 +1,7 @@
 export type QuizContextType = {
   state: QuizContextState;
   setState: QuizContextSetState;
+  unmountQuizPage(): void;
 };
 
 export type QuizContextState = {
