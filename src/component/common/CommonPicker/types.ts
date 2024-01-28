@@ -3,8 +3,8 @@ import {StyleProp, ViewStyle} from 'react-native';
 
 export interface CommonPickerProps {
   datas: string[];
-  selectedIdx: IndexPath | IndexPath[];
-  onSelect: (idx: IndexPath | IndexPath[]) => void;
+  selectedIdx: number;
+  onSelect: (idx: number, value: string) => void;
   title?: string;
   customStyle?: StyleProp<ViewStyle>;
 }
