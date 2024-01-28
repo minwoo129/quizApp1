@@ -1,6 +1,8 @@
 export type initialStateType = {
   /** 질문 목록 */
   questions: QuestionItem[] | null;
+  /** 질문 카테고리 목록 */
+  categorys: Categorys;
 };
 
 export interface Question {
@@ -24,3 +26,7 @@ export interface QuestionItem extends Question {
   /** 선택지 */
   answers: string[];
 }
+
+export type Categorys = {
+  [key in string]: number;
+};

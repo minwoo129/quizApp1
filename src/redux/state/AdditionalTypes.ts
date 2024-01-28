@@ -1,2 +1,7 @@
 // ================================ Quiz ================================
-export type {Question, QuestionItem, difficultyType} from './quiz/types';
+export type {
+  Question,
+  QuestionItem,
+  difficultyType,
+  Categorys,
+} from './quiz/types';
