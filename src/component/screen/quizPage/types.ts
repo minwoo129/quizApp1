@@ -1,1 +1,3 @@
-export interface QuizPageProps {}
+export interface HeaderProps {
+  onPressBack(): void;
+}
