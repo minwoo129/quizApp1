@@ -13,15 +13,19 @@ import ContextProvider from './contexts';
 import {QuizContextProvider} from './contexts/QuizContext';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import {ApplicationProvider} from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <ContextProvider contexts={[QuizContextProvider]}>
-            <AppMain />
-          </ContextProvider>
+          <ApplicationProvider {...eva} theme={eva.light}>
+            <ContextProvider contexts={[QuizContextProvider]}>
+              <AppMain />
+            </ContextProvider>
+          </ApplicationProvider>
         </Provider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
