@@ -1,12 +1,16 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {AppMainProps} from './types';
+import {NavigationContainer} from '@react-navigation/native';
+import RootStackNavigatior from './component/navigation/RootStackNavigatior';
 
 const AppMain: FC<AppMainProps> = ({}) => {
   return (
-    <View style={styles.container}>
-      <Text>메인</Text>
-    </View>
+    <>
+      <NavigationContainer>
+        <RootStackNavigatior />
+      </NavigationContainer>
+    </>
   );
 };
 
