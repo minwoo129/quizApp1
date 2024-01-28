@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
 import CommonPicker from '../../common/CommonPicker';
+import {difficultyType} from '../../../redux/state/AdditionalTypes';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -22,8 +23,11 @@ const QuizPage = () => {
   const questions = useAppSelector(state => state.quiz.questions);
   const categorys = useAppSelector(state => state.quiz.categorys);
 
-  const categoryTitles = Object.keys(categorys);
   const [categoryIdx, setCategoryIdx] = useState(0);
+  const [levelIdx, setLevelIdx] = useState(0);
+
+  const categoryTitles = Object.keys(categorys);
+  const levels = ['레벨 선택', '쉬움', '보통', '어려움'];
 
   useEffect(() => {
     return () => {
@@ -54,6 +58,10 @@ const QuizPage = () => {
     setCategoryIdx(idx);
   };
 
+  const onSelectLevel = (idx: number, value: string) => {
+    setLevelIdx(idx);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
@@ -64,6 +72,14 @@ const QuizPage = () => {
         selectedIdx={categoryIdx}
         title="카테고리를 선택해주세요."
         customStyle={styles.categoryPicker}
+      />
+
+      <CommonPicker
+        datas={levels}
+        onSelect={onSelectLevel}
+        selectedIdx={levelIdx}
+        title="난이도를 선택해주세요."
+        customStyle={styles.levelPicker}
       />
     </SafeAreaView>
   );
@@ -80,6 +96,10 @@ const styles = StyleSheet.create({
     height: 48,
   },
   categoryPicker: {
+    paddingHorizontal: 16,
+    marginTop: 16,
+  },
+  levelPicker: {
     paddingHorizontal: 16,
     marginTop: 16,
   },
