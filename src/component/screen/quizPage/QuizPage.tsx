@@ -12,8 +12,7 @@ import {clearQuizData, getQuestions} from '../../../redux/slice/quiz';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
-import CommonPicker from '../../common/CommonPicker';
-import {difficultyType} from '../../../redux/state/AdditionalTypes';
+import SelectQuizInfo from './pages/SelectQuizInfo';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -66,20 +65,10 @@ const QuizPage = () => {
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
 
-      <CommonPicker
-        datas={categoryTitles}
-        onSelect={onSelectCategory}
-        selectedIdx={categoryIdx}
-        title="카테고리를 선택해주세요."
-        customStyle={styles.categoryPicker}
-      />
-
-      <CommonPicker
-        datas={levels}
-        onSelect={onSelectLevel}
-        selectedIdx={levelIdx}
-        title="난이도를 선택해주세요."
-        customStyle={styles.levelPicker}
+      <SelectQuizInfo
+        visible={true}
+        categoryTitles={categoryTitles}
+        levels={levels}
       />
     </SafeAreaView>
   );

@@ -4,6 +4,12 @@ export interface HeaderProps {
   onPressBack(): void;
 }
 
+export interface SelectQuizInfoProps {
+  visible: boolean;
+  categoryTitles: string[];
+  levels: string[];
+}
+
 // =========================================================
 export type getQuestionParams = {
   amount: number;
