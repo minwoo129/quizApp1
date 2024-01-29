@@ -9,4 +9,5 @@ export const AppColor = {
       enabled: '#ffffff',
     },
   },
+  main: '#2ecc71',
 };
