@@ -11,6 +11,10 @@ export interface SelectQuizInfoProps extends QuizInfoFooterBtnProps {
   levels: string[];
 }
 
+export interface QuizQuestionProps {
+  visible: boolean;
+}
+
 // =========================================================
 export type getQuestionParams = {
   amount: number;
