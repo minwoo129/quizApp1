@@ -3,6 +3,7 @@ import {QuestionItem} from '../../../redux/state/AdditionalTypes';
 
 export interface CommonQuestionGridProps {
   visible?: boolean;
+  idx: number;
   question: QuestionItem;
   onSelectAnswer(answerData: QuestionAnswer): void;
   customStyle?: StyleProp<ViewStyle>;

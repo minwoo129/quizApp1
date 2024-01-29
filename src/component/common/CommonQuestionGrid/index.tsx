@@ -1,16 +1,22 @@
 import React, {FC, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {AnswerBtnProps, CommonQuestionGridProps, QuestionAnswer} from './types';
 import {Button} from '@ui-kitten/components';
+import {AppColor} from '../Styles';
 
 const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
   visible = true,
+  idx,
   question,
   onSelectAnswer,
   customStyle,
   answerViewCustomStyle,
 }) => {
   const [selectedIdx, setSelectedIdx] = useState(-1);
+  const [isPass, setPass] = useState(false);
+
+  const color = isPass ? AppColor.main : '#e67e22';
+  const isPassValue = isPass ? '정답입니다.' : '오답입니다.';
 
   const {answers, correct_answer} = question;
 
@@ -21,34 +27,48 @@ const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
     setSelectedIdx(idx);
     const selectValue = answers[idx];
     const correctValue = answers[answerIdx];
-
+    const isPass = correctValue === selectValue;
+    setPass(isPass);
     let answerData: QuestionAnswer = {
       ...question,
       selectAnswer: selectValue,
-      isPass: correctValue === selectValue,
+      isPass,
     };
     onSelectAnswer(answerData);
   };
 
   if (!visible) return null;
   return (
-    <View style={[styles.container, customStyle]}>
-      <Text style={styles.questionTxt}>{`문제: ${question.question}`}</Text>
-      <View style={[styles.answerGrid, answerViewCustomStyle]}>
-        {answers.map((item, idx) => {
-          return (
-            <AnswerBtn
-              answer={item}
-              onPress={() => onPressAnswer(idx)}
-              answerIdx={answerIdx}
-              idx={idx}
-              selectedIdx={selectedIdx}
-              key={idx}
-            />
-          );
-        })}
+    <ScrollView
+      style={[styles.container, customStyle]}
+      showsVerticalScrollIndicator={false}>
+      <View style={{width: '100%'}}>
+        <Text
+          style={
+            styles.questionTxt
+          }>{`문제 ${idx}: ${question.question}`}</Text>
+        <View style={[styles.answerGrid, answerViewCustomStyle]}>
+          {answers.map((item, idx) => {
+            return (
+              <AnswerBtn
+                answer={item}
+                onPress={() => onPressAnswer(idx)}
+                answerIdx={answerIdx}
+                idx={idx}
+                selectedIdx={selectedIdx}
+                key={idx}
+              />
+            );
+          })}
+        </View>
       </View>
-    </View>
+      {selectedIdx !== -1 && (
+        <Text style={[styles.isPassTxt, {color}]}>{isPassValue}</Text>
+      )}
+      {selectedIdx !== -1 && (
+        <Text style={styles.correctAnswerTxt}>{`정답: ${correct_answer}`}</Text>
+      )}
+    </ScrollView>
   );
 };
 
@@ -105,6 +125,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     marginTop: 10,
+  },
+  isPassTxt: {
+    marginTop: 20,
+    fontSize: 15,
+  },
+  correctAnswerTxt: {
+    fontSize: 15,
+    color: '#000',
   },
 });
 
