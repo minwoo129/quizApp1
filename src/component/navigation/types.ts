@@ -22,6 +22,7 @@ export interface MainStackNavigatorProps {}
 export type MainStackPageParams = {
   Home: undefined;
   QuizPage: undefined;
+  IncorrectNote: undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackPageParams>;
