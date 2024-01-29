@@ -15,6 +15,7 @@ import Header from './Header';
 import SelectQuizInfo from './pages/SelectQuizInfo';
 import QuizContext from '../../../contexts/QuizContext';
 import QuizQuestion from './pages/QuizQuestion';
+import {convertGetQuestionsParams} from './ConvertData';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -40,13 +41,17 @@ const QuizPage = () => {
   }, []);
 
   const _getQuestions = async () => {
+    const categoryValue = categoryTitles[categoryIdx];
+    const levelValue = levels[levelIdx];
+    const params = convertGetQuestionsParams({
+      categorys,
+      categoryValue,
+      levelValue,
+    });
     try {
       await dispatch(
         getQuestions({
-          params: {
-            amount: 10,
-            type: 'multiple',
-          },
+          params,
         }),
       );
     } catch (e) {
@@ -59,21 +64,21 @@ const QuizPage = () => {
   };
 
   const onPressQuizStart = () => {
-    console.log('onPressQuizStart');
+    _getQuestions();
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
 
-      {/* <SelectQuizInfo
+      <SelectQuizInfo
         visible={true}
         categoryTitles={categoryTitles}
         levels={levels}
         onPressQuizStart={onPressQuizStart}
         quizStartBtnDisabled={quizStartBtnDisabled}
-      /> */}
-      <QuizQuestion visible />
+      />
+      {/* <QuizQuestion visible /> */}
     </SafeAreaView>
   );
 };

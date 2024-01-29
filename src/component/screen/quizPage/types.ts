@@ -1,4 +1,4 @@
-import {difficultyType} from '../../../redux/state/AdditionalTypes';
+import {Categorys, difficultyType} from '../../../redux/state/AdditionalTypes';
 import {QuizInfoFooterBtnProps} from './childrens/types';
 
 export interface HeaderProps {
@@ -20,8 +20,17 @@ export type getQuestionParams = {
   amount: number;
   type: 'multiple';
   category: number;
+  difficulty: difficultyType;
 };
 
 export type LevelDataType = {
   [key in string]: difficultyType;
 };
+
+export type convertGetQuestionsParamsArgs = {
+  categoryValue: string;
+  levelValue: string;
+  categorys: Categorys;
+};
+
+// =========================================================
