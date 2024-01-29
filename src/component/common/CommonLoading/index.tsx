@@ -34,7 +34,11 @@ const CommonLoading: FC<CommonLoadingProps> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default React.memo(CommonLoading);
