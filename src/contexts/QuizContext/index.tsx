@@ -22,6 +22,8 @@ export const QuizContextProvider: ProviderType = ({children}) => {
   const [questionAnswers, setQuestionAnswers] = useState(
     defState.questionAnswers,
   );
+  const [startTime, setStartTime] = useState(defState.startTime);
+  const [endTime, setEndTime] = useState(defState.endTime);
 
   const unmountQuizPage = () => {
     setCategoryIdx(defState.categoryIdx);
@@ -44,12 +46,16 @@ export const QuizContextProvider: ProviderType = ({children}) => {
           levelIdx,
           currentQuestionIdx,
           questionAnswers,
+          startTime,
+          endTime,
         },
         setState: {
           setCategoryIdx,
           setLevelIdx,
           setCurrentQuestionIdx,
           setQuestionAnswers,
+          setStartTime,
+          setEndTime,
         },
         unmountQuizPage,
         addQuestionAnswer,

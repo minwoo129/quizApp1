@@ -10,6 +10,10 @@ export const QuizContextDefaultState: QuizContextState = {
   currentQuestionIdx: 0,
   /** 문제 및 선택값 정보 */
   questionAnswers: [],
+  /** 퀴즈 시작 시간 */
+  startTime: '',
+  /** 퀴즈 종료 시간 */
+  endTime: '',
 };
 
 export const QuizContextDefaultSetState: QuizContextSetState = {
@@ -33,4 +37,14 @@ export const QuizContextDefaultSetState: QuizContextSetState = {
    * - 연결 데이터: questionAnswers
    */
   setQuestionAnswers: (questionAnswers: QuestionAnswer[]) => {},
+  /**
+   * 퀴즈 시작 시간 설정
+   * - 연결 데이터: startTime
+   */
+  setStartTime: (startTime: string) => {},
+  /**
+   * 퀴즈 종료 시간 설정
+   * - 연결 데이터: endTime
+   */
+  setEndTime: (endTime: string) => {},
 };

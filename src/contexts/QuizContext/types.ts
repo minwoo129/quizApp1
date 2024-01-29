@@ -16,6 +16,10 @@ export type QuizContextState = {
   currentQuestionIdx: number;
   /** 문제 및 선택값 정보 */
   questionAnswers: QuestionAnswer[];
+  /** 퀴즈 시작 시간 */
+  startTime: string;
+  /** 퀴즈 종료 시간 */
+  endTime: string;
 };
 
 export type QuizContextSetState = {
@@ -39,6 +43,16 @@ export type QuizContextSetState = {
    * - 연결 데이터: questionAnswers
    */
   setQuestionAnswers: (questionAnswers: QuestionAnswer[]) => void;
+  /**
+   * 퀴즈 시작 시간 설정
+   * - 연결 데이터: startTime
+   */
+  setStartTime: (startTime: string) => void;
+  /**
+   * 퀴즈 종료 시간 설정
+   * - 연결 데이터: endTime
+   */
+  setEndTime: (endTime: string) => void;
 };
 
 // ===================================================================
