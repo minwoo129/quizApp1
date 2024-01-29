@@ -8,7 +8,11 @@ import QuizResultCount from '../childrens/QuizResultCount';
 import QuizDetailResult from '../childrens/QuizDetailResult';
 import QuizResultFooter from '../childrens/QuizResultFooter';
 
-const QuizResult: FC<QuizResultProps> = ({visible}) => {
+const QuizResult: FC<QuizResultProps> = ({
+  visible,
+  onPressRetest,
+  onPressIncorrectNote,
+}) => {
   const {state} = useContext(QuizContext);
 
   if (!visible) return null;
@@ -24,8 +28,8 @@ const QuizResult: FC<QuizResultProps> = ({visible}) => {
         </View>
       </ScrollView>
       <QuizResultFooter
-        onPressRetest={() => {}}
-        onPressIncorrectNote={() => {}}
+        onPressRetest={onPressRetest}
+        onPressIncorrectNote={onPressIncorrectNote}
       />
     </View>
   );

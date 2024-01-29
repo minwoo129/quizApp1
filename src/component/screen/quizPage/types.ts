@@ -1,5 +1,5 @@
 import {Categorys, difficultyType} from '../../../redux/state/AdditionalTypes';
-import {QuizInfoFooterBtnProps} from './childrens/types';
+import {QuizInfoFooterBtnProps, QuizResultFooterProps} from './childrens/types';
 
 export interface HeaderProps {
   onPressBack(): void;
@@ -16,7 +16,7 @@ export interface QuizQuestionProps {
   onQuizFinished(): void;
 }
 
-export interface QuizResultProps {
+export interface QuizResultProps extends QuizResultFooterProps {
   visible: boolean;
 }
 

@@ -76,6 +76,14 @@ const QuizPage = () => {
     setPage(2);
   };
 
+  const onPressRetest = () => {
+    console.log('onPressRetest');
+  };
+
+  const onPressIncorrectNote = () => {
+    console.log('onPressIncorrectNote');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
@@ -88,7 +96,11 @@ const QuizPage = () => {
         quizStartBtnDisabled={quizStartBtnDisabled}
       />
       <QuizQuestion visible={page === 1} onQuizFinished={onQuizFinished} />
-      <QuizResult visible={page === 2} />
+      <QuizResult
+        visible={page === 2}
+        onPressIncorrectNote={onPressIncorrectNote}
+        onPressRetest={onPressRetest}
+      />
 
       <CommonLoading visible={loading} backgroundColor="#0006" />
     </SafeAreaView>
