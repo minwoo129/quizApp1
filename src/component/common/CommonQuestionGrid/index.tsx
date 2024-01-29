@@ -15,7 +15,7 @@ const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
   const [selectedIdx, setSelectedIdx] = useState(-1);
   const [isPass, setPass] = useState(false);
 
-  const color = isPass ? AppColor.main : '#e67e22';
+  const color = isPass ? AppColor.text.correct : AppColor.text.wrong;
   const isPassValue = isPass ? '정답입니다.' : '오답입니다.';
 
   const {answers, correct_answer} = question;

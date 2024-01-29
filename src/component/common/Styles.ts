@@ -9,5 +9,9 @@ export const AppColor = {
       enabled: '#ffffff',
     },
   },
+  text: {
+    correct: '#2ecc71',
+    wrong: '#e67e22',
+  },
   main: '#2ecc71',
 };

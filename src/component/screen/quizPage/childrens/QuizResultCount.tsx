@@ -39,8 +39,8 @@ const QuizResultCountItem: FC<QuizResultCountItemProps> = ({
   type,
 }) => {
   let color = '#757575';
-  if (type === 'correct') color = AppColor.main;
-  else if (type === 'wrong') color = '#e67e22';
+  if (type === 'correct') color = AppColor.text.correct;
+  else if (type === 'wrong') color = AppColor.text.wrong;
 
   return (
     <View style={styles.itemView}>
