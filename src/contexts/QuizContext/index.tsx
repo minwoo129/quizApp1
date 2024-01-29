@@ -5,12 +5,14 @@ import {
   QuizContextDefaultState as defState,
   QuizContextDefaultSetState as defSetState,
 } from './defaultState';
+import dayjs from 'dayjs';
 
 const QuizContext = createContext<QuizContextType>({
   state: defState,
   setState: defSetState,
   unmountQuizPage: () => {},
   addQuestionAnswer: () => {},
+  clearForRetest: () => {},
 });
 
 export const QuizContextProvider: ProviderType = ({children}) => {
@@ -30,12 +32,21 @@ export const QuizContextProvider: ProviderType = ({children}) => {
     setLevelIdx(defState.levelIdx);
     setCurrentQuestionIdx(defState.currentQuestionIdx);
     setQuestionAnswers(defState.questionAnswers);
+    setStartTime(defState.startTime);
+    setEndTime(defState.endTime);
   };
 
   const addQuestionAnswer: addQuestionAnswer = answer => {
     let newAnswers = [...questionAnswers];
     newAnswers.push(answer);
     setQuestionAnswers(newAnswers);
+  };
+
+  const clearForRetest = () => {
+    setStartTime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+    setEndTime(defState.endTime);
+    setCurrentQuestionIdx(defState.currentQuestionIdx);
+    setQuestionAnswers(defState.questionAnswers);
   };
 
   return (
@@ -59,6 +70,7 @@ export const QuizContextProvider: ProviderType = ({children}) => {
         },
         unmountQuizPage,
         addQuestionAnswer,
+        clearForRetest,
       }}>
       {children}
     </QuizContext.Provider>

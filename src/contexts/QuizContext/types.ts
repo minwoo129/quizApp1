@@ -5,6 +5,7 @@ export type QuizContextType = {
   setState: QuizContextSetState;
   unmountQuizPage(): void;
   addQuestionAnswer: addQuestionAnswer;
+  clearForRetest(): void;
 };
 
 export type QuizContextState = {

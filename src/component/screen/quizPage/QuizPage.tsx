@@ -23,7 +23,8 @@ const QuizPage = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const {state, setState, unmountQuizPage} = useContext(QuizContext);
+  const {state, setState, unmountQuizPage, clearForRetest} =
+    useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
   const {setStartTime, setEndTime} = setState;
 
@@ -78,6 +79,8 @@ const QuizPage = () => {
 
   const onPressRetest = () => {
     console.log('onPressRetest');
+    clearForRetest();
+    setPage(1);
   };
 
   const onPressIncorrectNote = () => {
