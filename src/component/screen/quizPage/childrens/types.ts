@@ -1,4 +1,4 @@
-import {StyleProp, ViewStyle} from 'react-native';
+import {QuestionAnswer} from '../../../common/CommonQuestionGrid/types';
 
 export interface QuizInfoFooterBtnProps {
   onPressQuizStart(): void;
@@ -18,4 +18,11 @@ export interface QuizResultCountItemProps {
   title: string;
   count: number;
   type: 'total' | 'correct' | 'wrong';
+}
+
+export interface QuizDetailResultProps {}
+
+export interface QuizDetailResultItemProps {
+  answerData: QuestionAnswer;
+  idx: number;
 }

@@ -5,6 +5,7 @@ import QuizContext from '../../../../contexts/QuizContext';
 import {AppColor} from '../../../common/Styles';
 import TakenTime from '../childrens/TakenTime';
 import QuizResultCount from '../childrens/QuizResultCount';
+import QuizDetailResult from '../childrens/QuizDetailResult';
 
 const QuizResult: FC<QuizResultProps> = ({visible}) => {
   const {state} = useContext(QuizContext);
@@ -14,6 +15,7 @@ const QuizResult: FC<QuizResultProps> = ({visible}) => {
     <View style={styles.container}>
       <TakenTime />
       <QuizResultCount />
+      <QuizDetailResult />
     </View>
   );
 };
