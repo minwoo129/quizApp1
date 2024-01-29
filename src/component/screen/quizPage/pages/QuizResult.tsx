@@ -6,25 +6,41 @@ import {AppColor} from '../../../common/Styles';
 import TakenTime from '../childrens/TakenTime';
 import QuizResultCount from '../childrens/QuizResultCount';
 import QuizDetailResult from '../childrens/QuizDetailResult';
+import QuizResultFooter from '../childrens/QuizResultFooter';
 
 const QuizResult: FC<QuizResultProps> = ({visible}) => {
   const {state} = useContext(QuizContext);
 
   if (!visible) return null;
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={{width: '100%', paddingHorizontal: 16}}>
-        <TakenTime />
-        <QuizResultCount />
-        <QuizDetailResult />
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.scrollInsideView}>
+          <TakenTime />
+          <QuizResultCount />
+          <QuizDetailResult />
+        </View>
+      </ScrollView>
+      <QuizResultFooter
+        onPressRetest={() => {}}
+        onPressIncorrectNote={() => {}}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollInsideView: {
+    width: '100%',
+    paddingHorizontal: 16,
   },
   timeTxt: {
     fontSize: 18,

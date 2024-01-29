@@ -26,3 +26,8 @@ export interface QuizDetailResultItemProps {
   answerData: QuestionAnswer;
   idx: number;
 }
+
+export interface QuizResultFooterProps {
+  onPressRetest(): void;
+  onPressIncorrectNote(): void;
+}
