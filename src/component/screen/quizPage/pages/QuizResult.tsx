@@ -1,5 +1,5 @@
 import React, {FC, useContext} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {QuizResultProps} from '../types';
 import QuizContext from '../../../../contexts/QuizContext';
 import {AppColor} from '../../../common/Styles';
@@ -12,18 +12,19 @@ const QuizResult: FC<QuizResultProps> = ({visible}) => {
 
   if (!visible) return null;
   return (
-    <View style={styles.container}>
-      <TakenTime />
-      <QuizResultCount />
-      <QuizDetailResult />
-    </View>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <View style={{width: '100%', paddingHorizontal: 16}}>
+        <TakenTime />
+        <QuizResultCount />
+        <QuizDetailResult />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   timeTxt: {
     fontSize: 18,

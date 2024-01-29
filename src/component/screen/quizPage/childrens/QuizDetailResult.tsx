@@ -58,6 +58,7 @@ const shadow = Platform.select<ViewStyle>({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    marginBottom: 20,
   },
   title: {
     fontSize: 18,
@@ -67,21 +68,23 @@ const styles = StyleSheet.create({
   },
   itemView: {
     width: '100%',
-    height: 44,
+    height: 50,
     marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 32,
+    backgroundColor: '#fff',
+    borderRadius: 10,
     ...shadow,
   },
   itemTitle: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: '700',
     color: '#757575',
   },
   itemValue: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: '700',
     marginLeft: 20,
   },

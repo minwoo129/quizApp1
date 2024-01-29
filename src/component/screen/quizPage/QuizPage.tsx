@@ -10,6 +10,8 @@ import QuizContext from '../../../contexts/QuizContext';
 import QuizQuestion from './pages/QuizQuestion';
 import {convertGetQuestionsParams} from './ConvertData';
 import CommonLoading from '../../common/CommonLoading';
+import dayjs from 'dayjs';
+import QuizResult from './pages/QuizResult';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +23,9 @@ const QuizPage = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const {state, unmountQuizPage} = useContext(QuizContext);
+  const {state, setState, unmountQuizPage} = useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
+  const {setStartTime, setEndTime} = setState;
 
   const categoryTitles = Object.keys(categorys);
   const levels = ['레벨 선택', '쉬움', '보통', '어려움'];
@@ -52,6 +55,7 @@ const QuizPage = () => {
         }),
       );
       setPage(1);
+      setStartTime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
     } catch (e) {
       __DEV__ && console.log('QuizPage _getQuestions error', e);
     } finally {
@@ -68,7 +72,8 @@ const QuizPage = () => {
   };
 
   const onQuizFinished = () => {
-    console.log('onQuizFinished');
+    setEndTime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+    setPage(2);
   };
 
   return (
@@ -83,6 +88,7 @@ const QuizPage = () => {
         quizStartBtnDisabled={quizStartBtnDisabled}
       />
       <QuizQuestion visible={page === 1} onQuizFinished={onQuizFinished} />
+      <QuizResult visible={page === 2} />
 
       <CommonLoading visible={loading} backgroundColor="#0006" />
     </SafeAreaView>

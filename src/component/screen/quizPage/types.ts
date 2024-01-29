@@ -16,6 +16,10 @@ export interface QuizQuestionProps {
   onQuizFinished(): void;
 }
 
+export interface QuizResultProps {
+  visible: boolean;
+}
+
 // =========================================================
 export type getQuestionParams = {
   amount: number;
