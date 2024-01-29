@@ -2,12 +2,14 @@ import React, {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {QuizInfoFooterBtnProps} from './types';
 import CommonButton from '../../../common/CommonButton';
+import {AppColor} from '../../../common/Styles';
 
 const QuizInfoFooterBtn: FC<QuizInfoFooterBtnProps> = ({
   onPressQuizStart,
   quizStartBtnDisabled,
 }) => {
-  const backgroundColor = quizStartBtnDisabled ? '#bdc3c7' : '#2ecc71';
+  const {enabled, disabled} = AppColor.button.background;
+  const backgroundColor = quizStartBtnDisabled ? disabled : enabled;
   return (
     <View style={styles.container}>
       <CommonButton
