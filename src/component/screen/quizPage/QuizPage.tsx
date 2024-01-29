@@ -9,16 +9,17 @@ import SelectQuizInfo from './pages/SelectQuizInfo';
 import QuizContext from '../../../contexts/QuizContext';
 import QuizQuestion from './pages/QuizQuestion';
 import {convertGetQuestionsParams} from './ConvertData';
+import CommonLoading from '../../common/CommonLoading';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
 
   const mainStackNavigation = useNavigation<MainStackNavigation>();
 
-  const questions = useAppSelector(state => state.quiz.questions);
   const categorys = useAppSelector(state => state.quiz.categorys);
 
   const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const {state, unmountQuizPage} = useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
@@ -36,6 +37,7 @@ const QuizPage = () => {
   }, []);
 
   const _getQuestions = async () => {
+    setLoading(true);
     const categoryValue = categoryTitles[categoryIdx];
     const levelValue = levels[levelIdx];
     const params = convertGetQuestionsParams({
@@ -49,8 +51,11 @@ const QuizPage = () => {
           params,
         }),
       );
+      setPage(1);
     } catch (e) {
       __DEV__ && console.log('QuizPage _getQuestions error', e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +79,8 @@ const QuizPage = () => {
         quizStartBtnDisabled={quizStartBtnDisabled}
       />
       <QuizQuestion visible={page === 1} />
+
+      <CommonLoading visible={loading} backgroundColor="#0006" />
     </SafeAreaView>
   );
 };
