@@ -27,6 +27,7 @@ export const QuizContextProvider: ProviderType = ({children}) => {
     setCategoryIdx(defState.categoryIdx);
     setLevelIdx(defState.levelIdx);
     setCurrentQuestionIdx(defState.currentQuestionIdx);
+    setQuestionAnswers(defState.questionAnswers);
   };
 
   const addQuestionAnswer: addQuestionAnswer = answer => {
