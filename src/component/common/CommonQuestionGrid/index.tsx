@@ -16,6 +16,7 @@ const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
   const answerIdx = answers.indexOf(correct_answer);
 
   const onPressAnswer = (idx: number) => {
+    if (selectedIdx !== -1) return;
     setSelectedIdx(idx);
     const selectValue = answers[idx];
     const correctValue = answers[answerIdx];
@@ -50,7 +51,6 @@ const AnswerBtn: FC<AnswerBtnProps> = ({
   answerIdx,
   selectedIdx,
 }) => {
-  let appearance = 'ghost';
   let status = 'basic';
 
   if (selectedIdx !== -1) {
@@ -58,18 +58,15 @@ const AnswerBtn: FC<AnswerBtnProps> = ({
     if (idx === selectedIdx) {
       // 정답 idx와 이 아이템의 idx가 같을 때(정답을 선택한 경우)
       if (answerIdx === selectedIdx) {
-        appearance = 'outline';
         status = 'success';
       }
       // 오답을 선택한 경우
       else {
-        appearance = 'outline';
         status = 'danger';
       }
     } else {
       // 오답을 선택했을 때 실제 정답 아이템의 상태 변경
       if (answerIdx === idx) {
-        appearance = 'outline';
         status = 'success';
       }
     }
@@ -77,10 +74,9 @@ const AnswerBtn: FC<AnswerBtnProps> = ({
   return (
     <Button
       style={styles.answerBtn}
-      appearance={appearance}
+      appearance={'outline'}
       status={status}
-      onPress={onPress}
-      disabled={selectedIdx !== -1}>
+      onPress={onPress}>
       {answer}
     </Button>
   );
