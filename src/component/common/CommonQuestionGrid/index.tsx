@@ -1,9 +1,10 @@
 import React, {FC, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {AnswerBtnProps, CommonQuestionGridProps} from './types';
+import {AnswerBtnProps, CommonQuestionGridProps, QuestionAnswer} from './types';
 import {Button} from '@ui-kitten/components';
 
 const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
+  visible = true,
   question,
   onSelectAnswer,
   customStyle,
@@ -20,9 +21,16 @@ const CommonQuestionGrid: FC<CommonQuestionGridProps> = ({
     setSelectedIdx(idx);
     const selectValue = answers[idx];
     const correctValue = answers[answerIdx];
-    onSelectAnswer(selectValue, correctValue);
+
+    let answerData: QuestionAnswer = {
+      ...question,
+      selectAnswer: selectValue,
+      isPass: correctValue === selectValue,
+    };
+    onSelectAnswer(answerData);
   };
 
+  if (!visible) return null;
   return (
     <View style={[styles.container, customStyle]}>
       <Text style={styles.questionTxt}>{`문제: ${question.question}`}</Text>

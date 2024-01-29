@@ -2,8 +2,9 @@ import {StyleProp, ViewStyle} from 'react-native';
 import {QuestionItem} from '../../../redux/state/AdditionalTypes';
 
 export interface CommonQuestionGridProps {
+  visible?: boolean;
   question: QuestionItem;
-  onSelectAnswer(selectValue: string, correctValue: string): void;
+  onSelectAnswer(answerData: QuestionAnswer): void;
   customStyle?: StyleProp<ViewStyle>;
   answerViewCustomStyle?: StyleProp<ViewStyle>;
 }
@@ -14,4 +15,9 @@ export interface AnswerBtnProps {
   idx: number;
   answerIdx: number;
   selectedIdx: number;
+}
+
+export interface QuestionAnswer extends QuestionItem {
+  selectAnswer: string;
+  isPass: boolean;
 }
