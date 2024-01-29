@@ -67,6 +67,10 @@ const QuizPage = () => {
     _getQuestions();
   };
 
+  const onQuizFinished = () => {
+    console.log('onQuizFinished');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
@@ -78,7 +82,7 @@ const QuizPage = () => {
         onPressQuizStart={onPressQuizStart}
         quizStartBtnDisabled={quizStartBtnDisabled}
       />
-      <QuizQuestion visible={page === 1} />
+      <QuizQuestion visible={page === 1} onQuizFinished={onQuizFinished} />
 
       <CommonLoading visible={loading} backgroundColor="#0006" />
     </SafeAreaView>

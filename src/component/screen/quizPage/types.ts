@@ -13,6 +13,7 @@ export interface SelectQuizInfoProps extends QuizInfoFooterBtnProps {
 
 export interface QuizQuestionProps {
   visible: boolean;
+  onQuizFinished(): void;
 }
 
 // =========================================================
