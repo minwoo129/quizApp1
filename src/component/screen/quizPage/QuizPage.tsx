@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {
   Button,
@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
 import SelectQuizInfo from './pages/SelectQuizInfo';
+import QuizContext from '../../../contexts/QuizContext';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -22,15 +23,18 @@ const QuizPage = () => {
   const questions = useAppSelector(state => state.quiz.questions);
   const categorys = useAppSelector(state => state.quiz.categorys);
 
-  const [categoryIdx, setCategoryIdx] = useState(0);
-  const [levelIdx, setLevelIdx] = useState(0);
+  const {state, unmountQuizPage} = useContext(QuizContext);
+  const {categoryIdx, levelIdx} = state;
 
   const categoryTitles = Object.keys(categorys);
   const levels = ['레벨 선택', '쉬움', '보통', '어려움'];
 
+  const quizStartBtnDisabled = categoryIdx === 0 || levelIdx === 0;
+
   useEffect(() => {
     return () => {
       dispatch(clearQuizData());
+      unmountQuizPage();
     };
   }, []);
 
@@ -53,12 +57,8 @@ const QuizPage = () => {
     mainStackNavigation.goBack();
   };
 
-  const onSelectCategory = (idx: number, value: string) => {
-    setCategoryIdx(idx);
-  };
-
-  const onSelectLevel = (idx: number, value: string) => {
-    setLevelIdx(idx);
+  const onPressQuizStart = () => {
+    console.log('onPressQuizStart');
   };
 
   return (
@@ -69,6 +69,8 @@ const QuizPage = () => {
         visible={true}
         categoryTitles={categoryTitles}
         levels={levels}
+        onPressQuizStart={onPressQuizStart}
+        quizStartBtnDisabled={quizStartBtnDisabled}
       />
     </SafeAreaView>
   );
@@ -77,7 +79,6 @@ const QuizPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
     backgroundColor: '#fff',
   },
   button: {

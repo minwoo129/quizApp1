@@ -3,11 +3,14 @@ import {StyleSheet, View} from 'react-native';
 import CommonPicker from '../../../common/CommonPicker';
 import {SelectQuizInfoProps} from '../types';
 import QuizContext from '../../../../contexts/QuizContext';
+import QuizInfoFooterBtn from '../childrens/QuizInfoFooterBtn';
 
 const SelectQuizInfo: FC<SelectQuizInfoProps> = ({
   visible,
   categoryTitles,
   levels,
+  onPressQuizStart,
+  quizStartBtnDisabled,
 }) => {
   const {state, setState} = useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
@@ -42,6 +45,11 @@ const SelectQuizInfo: FC<SelectQuizInfoProps> = ({
           customStyle={styles.levelPicker}
         />
       </View>
+
+      <QuizInfoFooterBtn
+        onPressQuizStart={onPressQuizStart}
+        quizStartBtnDisabled={quizStartBtnDisabled}
+      />
     </View>
   );
 };
