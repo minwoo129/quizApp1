@@ -1,39 +1,53 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {QuizQuestionProps} from '../types';
 import {QuestionItem} from '../../../../redux/state/AdditionalTypes';
 import CommonQuestionGrid from '../../../common/CommonQuestionGrid';
+import QuizQuestionFooter from '../childrens/QuizQuestionFooter';
+import {QuestionAnswer} from '../../../common/CommonQuestionGrid/types';
+import {useAppSelector} from '../../../../hooks';
+import QuizContext from '../../../../contexts/QuizContext';
 
-const QuizQuestion: FC<QuizQuestionProps> = ({visible}) => {
-  const testQuestion: QuestionItem = {
-    category: 'Entertainment: Video Games',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'Which of these is NOT a game under the Worms series?',
-    correct_answer: 'Worms: Ultimate Mayhem',
-    incorrect_answers: [
-      'Worms: Reloaded',
-      'Worms: Revolution',
-      'Worms: Open Warfare',
-    ],
-    answers: [
-      'Worms: Ultimate Mayhem',
-      'Worms: Reloaded',
-      'Worms: Revolution',
-      'Worms: Open Warfare',
-    ],
+const QuizQuestion: FC<QuizQuestionProps> = ({visible, onQuizFinished}) => {
+  const question = useAppSelector(state => state.quiz.questions);
+
+  const {state, setState, addQuestionAnswer} = useContext(QuizContext);
+  const {currentQuestionIdx, questionAnswers} = state;
+  const {setCurrentQuestionIdx} = setState;
+
+  const onSelectAnswer = (answerData: QuestionAnswer) => {
+    addQuestionAnswer(answerData);
   };
-  const onSelectAnswer = (selectValue: string, correctValue: string) => {
-    console.log('onSelectAnswer');
+
+  const onPressNext = () => {
+    if (!question) return;
+    if (questionAnswers.length === question.length) {
+      onQuizFinished();
+      return;
+    }
+    setCurrentQuestionIdx(currentQuestionIdx + 1);
   };
 
   if (!visible) return null;
+  if (!question) return null;
+
   return (
     <View style={styles.container}>
-      <CommonQuestionGrid
-        question={testQuestion}
-        onSelectAnswer={onSelectAnswer}
-        customStyle={styles.questionGrid}
+      {question.map((item, idx) => {
+        return (
+          <CommonQuestionGrid
+            visible={currentQuestionIdx === idx}
+            idx={idx + 1}
+            question={item}
+            onSelectAnswer={onSelectAnswer}
+            customStyle={styles.questionGrid}
+            key={idx}
+          />
+        );
+      })}
+      <QuizQuestionFooter
+        visible={currentQuestionIdx + 1 === questionAnswers.length}
+        onPressNext={onPressNext}
       />
     </View>
   );
@@ -44,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   questionGrid: {
+    flex: 1,
     paddingHorizontal: 16,
   },
 });
