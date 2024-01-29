@@ -1,12 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {
-  Button,
-  IndexPath,
-  Layout,
-  Select,
-  SelectItem,
-} from '@ui-kitten/components';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {clearQuizData, getQuestions} from '../../../redux/slice/quiz';
 import {useNavigation} from '@react-navigation/native';
@@ -24,6 +17,8 @@ const QuizPage = () => {
 
   const questions = useAppSelector(state => state.quiz.questions);
   const categorys = useAppSelector(state => state.quiz.categorys);
+
+  const [page, setPage] = useState(0);
 
   const {state, unmountQuizPage} = useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
@@ -72,13 +67,13 @@ const QuizPage = () => {
       <Header onPressBack={onPressBack} />
 
       <SelectQuizInfo
-        visible={true}
+        visible={page === 0}
         categoryTitles={categoryTitles}
         levels={levels}
         onPressQuizStart={onPressQuizStart}
         quizStartBtnDisabled={quizStartBtnDisabled}
       />
-      {/* <QuizQuestion visible /> */}
+      <QuizQuestion visible={page === 1} />
     </SafeAreaView>
   );
 };
