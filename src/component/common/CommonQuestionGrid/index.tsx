@@ -79,7 +79,8 @@ const AnswerBtn: FC<AnswerBtnProps> = ({
       style={styles.answerBtn}
       appearance={appearance}
       status={status}
-      onPress={onPress}>
+      onPress={onPress}
+      disabled={selectedIdx !== -1}>
       {answer}
     </Button>
   );
