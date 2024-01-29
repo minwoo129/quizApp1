@@ -7,7 +7,7 @@ export const QuizContextDefaultState: QuizContextState = {
   /** 선택한 난이도 idx */
   levelIdx: 0,
   /** 현재 문제 페이지 */
-  currentQuestionIdx: 1,
+  currentQuestionIdx: 0,
   /** 문제 및 선택값 정보 */
   questionAnswers: [],
 };
