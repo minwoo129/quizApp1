@@ -14,6 +14,7 @@ import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
 import SelectQuizInfo from './pages/SelectQuizInfo';
 import QuizContext from '../../../contexts/QuizContext';
+import QuizQuestion from './pages/QuizQuestion';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -65,13 +66,14 @@ const QuizPage = () => {
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
 
-      <SelectQuizInfo
+      {/* <SelectQuizInfo
         visible={true}
         categoryTitles={categoryTitles}
         levels={levels}
         onPressQuizStart={onPressQuizStart}
         quizStartBtnDisabled={quizStartBtnDisabled}
-      />
+      /> */}
+      <QuizQuestion visible />
     </SafeAreaView>
   );
 };
