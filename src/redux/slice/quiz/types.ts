@@ -1,5 +1,10 @@
 import {PayloadAction} from '@reduxjs/toolkit';
-import {Question, QuizRecord} from '../../state/AdditionalTypes';
+import {
+  IncorrectQuizRecord,
+  Question,
+  QuizRecord,
+} from '../../state/AdditionalTypes';
+import {QuestionAnswer} from '../../../component/common/CommonQuestionGrid/types';
 
 export type getQuestionsResponse = {
   response_code: number;
@@ -8,6 +13,16 @@ export type getQuestionsResponse = {
 
 export type clearQuizDataAction = PayloadAction<undefined>;
 
-export type setQuizRecordsAction = PayloadAction<QuizRecord[]>;
+export type setQuizRecordsAction = PayloadAction<setQuizRecordsArgs>;
+
+type setQuizRecordsArgs = {
+  quizRecords: QuizRecord[];
+  incorrectRecords: IncorrectQuizRecord[];
+};
 
 export type addQuizRecordAction = PayloadAction<QuizRecord>;
+
+export type IncorrectQuizOrignalRecord = {
+  createdAt: string;
+  question: QuestionAnswer;
+};

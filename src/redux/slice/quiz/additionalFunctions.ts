@@ -5,6 +5,9 @@ import {
   QuestionItem,
   QuizRecord,
 } from '../../state/AdditionalTypes';
+import {IncorrectQuizOrignalRecord} from './types';
+import {QuestionAnswer} from '../../../component/common/CommonQuestionGrid/types';
+import {original} from '@reduxjs/toolkit';
 
 export const ConvertQuestions = (questions: Question[]) => {
   let newItems: QuestionItem[] = [];
@@ -23,17 +26,61 @@ export const ConvertQuestions = (questions: Question[]) => {
 };
 
 export const FilterIncorrectQuestions = (records: QuizRecord[]) => {
-  let incorrectRecords: IncorrectQuizRecord[] = [];
+  let original: IncorrectQuizOrignalRecord[] = [];
   for (let record of records) {
     const {questionAnswers, createdAt} = record;
     const filterdAnswers = questionAnswers.filter(item => !item.isPass);
-    for (let answer of filterdAnswers) {
-      incorrectRecords.push({
-        createdAt,
-        question: answer,
-      });
-    }
+    original = [...original, ...convertIncorrect1(createdAt, filterdAnswers)];
   }
 
+  return convertIncorrect2(original);
+};
+
+const convertIncorrect1 = (createdAt: string, answers: QuestionAnswer[]) => {
+  let original: IncorrectQuizOrignalRecord[] = [];
+  original = answers.map(item => {
+    return {
+      createdAt,
+      question: item,
+    };
+  });
+
+  return original;
+};
+
+const convertIncorrect2 = (original: IncorrectQuizOrignalRecord[]) => {
+  let incorrectRecords: IncorrectQuizRecord[] = [];
+  const totalLength = original.length - 1;
+  incorrectRecords = original.map((item, index) => {
+    return {
+      ...item,
+      idx: totalLength - index,
+    };
+  });
+
   return incorrectRecords;
+};
+
+export const ConvertIncorrectQuizRecord = (
+  incorrectRecords: IncorrectQuizRecord[],
+  newRecord: QuizRecord,
+) => {
+  let newIncorrectRecords: IncorrectQuizRecord[] = [...incorrectRecords];
+  const filteredAnswers = newRecord.questionAnswers.filter(
+    item => !item.isPass,
+  );
+  const firstIdx = incorrectRecords.length;
+  const {createdAt} = newRecord;
+
+  newIncorrectRecords = filteredAnswers.map((item, index) => {
+    return {
+      createdAt,
+      question: item,
+      idx: firstIdx + index,
+    };
+  });
+
+  newIncorrectRecords.sort((a, b) => b.idx - a.idx);
+
+  return newIncorrectRecords;
 };

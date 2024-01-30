@@ -19,7 +19,13 @@ const AppMain: FC<AppMainProps> = ({}) => {
     try {
       const quizRecords = await getQuizRecords();
       if (quizRecords) {
-        dispatch(setQuizRecords(quizRecords.records));
+        quizRecords.incorrectRecords;
+        dispatch(
+          setQuizRecords({
+            quizRecords: quizRecords.records,
+            incorrectRecords: quizRecords.incorrectRecords,
+          }),
+        );
       }
     } catch (e) {}
   };

@@ -1,5 +1,5 @@
 import {QuestionAnswer} from '../component/common/CommonQuestionGrid/types';
-import {QuizRecord} from '../redux/state/AdditionalTypes';
+import {IncorrectQuizRecord, QuizRecord} from '../redux/state/AdditionalTypes';
 
 export type storageKey = 'quizRecord';
 
@@ -14,6 +14,7 @@ type quizRecordDataArgs = {
 export type QuizRecordData = {
   records: QuizRecord[];
   totalElements: number;
+  incorrectRecords: IncorrectQuizRecord[];
 };
 
 export type getStorageDataType = <T = any>(

@@ -8,6 +8,7 @@ import {
 } from './types';
 import {createPromiseThunk} from '../../lib/AsyncUtils';
 import {
+  ConvertIncorrectQuizRecord,
   ConvertQuestions,
   FilterIncorrectQuestions,
 } from './additionalFunctions';
@@ -33,18 +34,32 @@ const quizSlice = createSlice({
       state.questions = null;
     },
     setQuizRecords: (state, action: setQuizRecordsAction) => {
-      state.quizRecords = action.payload;
-      state.incorrectQuizRecords = FilterIncorrectQuestions(action.payload);
+      const {incorrectRecords, quizRecords} = action.payload;
+      state.quizRecords = quizRecords;
+      state.incorrectQuizRecords = incorrectRecords;
     },
     addQuizRecord: (state, action: addQuizRecordAction) => {
       let newRecords = [...state.quizRecords];
       newRecords.push(action.payload);
       state.quizRecords = newRecords;
-      state.incorrectQuizRecords = FilterIncorrectQuestions(newRecords);
+
+      let newIncorrectRecords = [...state.incorrectQuizRecords];
+      const incorrectRecords = ConvertIncorrectQuizRecord(
+        newIncorrectRecords,
+        action.payload,
+      );
+      newIncorrectRecords = [...incorrectRecords, ...newIncorrectRecords];
+      state.incorrectQuizRecords = newIncorrectRecords;
+
+      console.log('newIncorrectRecords', newIncorrectRecords);
 
       setStorageData({
         key: 'quizRecord',
-        value: {records: newRecords, totalElements: newRecords.length},
+        value: {
+          records: newRecords,
+          totalElements: newRecords.length,
+          incorrectRecords: newIncorrectRecords,
+        },
       });
     },
   },
