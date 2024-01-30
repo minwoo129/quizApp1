@@ -1,7 +1,11 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {clearQuizData, getQuestions} from '../../../redux/slice/quiz';
+import {
+  addQuizRecord,
+  clearQuizData,
+  getQuestions,
+} from '../../../redux/slice/quiz';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
@@ -23,7 +27,7 @@ const QuizPage = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const {state, setState, unmountQuizPage, clearForRetest} =
+  const {state, setState, unmountQuizPage, clearForRetest, convertQuizRecord} =
     useContext(QuizContext);
   const {categoryIdx, levelIdx} = state;
   const {setStartTime, setEndTime} = setState;
@@ -73,7 +77,11 @@ const QuizPage = () => {
   };
 
   const onQuizFinished = () => {
-    setEndTime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+    const endTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    setEndTime(endTime);
+    const newRecord = convertQuizRecord(endTime);
+    console.log('newRecord', newRecord);
+    dispatch(addQuizRecord(newRecord));
     setPage(2);
   };
 

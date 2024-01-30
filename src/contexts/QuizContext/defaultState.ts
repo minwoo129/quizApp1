@@ -1,4 +1,5 @@
 import {QuestionAnswer} from '../../component/common/CommonQuestionGrid/types';
+import {QuizRecord} from '../../redux/state/AdditionalTypes';
 import {QuizContextSetState, QuizContextState} from './types';
 
 export const QuizContextDefaultState: QuizContextState = {
@@ -47,4 +48,16 @@ export const QuizContextDefaultSetState: QuizContextSetState = {
    * - 연결 데이터: endTime
    */
   setEndTime: (endTime: string) => {},
+};
+
+export const QuizRecordDefault: QuizRecord = {
+  createdAt: '',
+  endTime: '',
+  idx: 0,
+  questionAnswers: [],
+  result: {
+    correctCount: 0,
+    wrongCount: 0,
+  },
+  startTime: '',
 };

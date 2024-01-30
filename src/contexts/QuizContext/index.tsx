@@ -4,8 +4,11 @@ import {ProviderType} from '../types';
 import {
   QuizContextDefaultState as defState,
   QuizContextDefaultSetState as defSetState,
+  QuizRecordDefault,
 } from './defaultState';
 import dayjs from 'dayjs';
+import {QuizRecord} from '../../redux/state/AdditionalTypes';
+import {useAppSelector} from '../../hooks';
 
 const QuizContext = createContext<QuizContextType>({
   state: defState,
@@ -13,9 +16,11 @@ const QuizContext = createContext<QuizContextType>({
   unmountQuizPage: () => {},
   addQuestionAnswer: () => {},
   clearForRetest: () => {},
+  convertQuizRecord: () => QuizRecordDefault,
 });
 
 export const QuizContextProvider: ProviderType = ({children}) => {
+  const quizRecords = useAppSelector(state => state.quiz.quizRecords);
   const [categoryIdx, setCategoryIdx] = useState(defState.categoryIdx);
   const [levelIdx, setLevelIdx] = useState(defState.levelIdx);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(
@@ -49,6 +54,30 @@ export const QuizContextProvider: ProviderType = ({children}) => {
     setQuestionAnswers(defState.questionAnswers);
   };
 
+  const convertQuizRecord = (endTime: string) => {
+    let correctCount = 0,
+      wrongCount = 0;
+
+    for (let answer of questionAnswers) {
+      const {isPass} = answer;
+      if (isPass) correctCount++;
+      else wrongCount++;
+    }
+    let newRecord: QuizRecord = {
+      startTime,
+      endTime,
+      createdAt: startTime,
+      idx: quizRecords.length,
+      questionAnswers,
+      result: {
+        correctCount,
+        wrongCount,
+      },
+    };
+
+    return newRecord;
+  };
+
   return (
     <QuizContext.Provider
       value={{
@@ -71,6 +100,7 @@ export const QuizContextProvider: ProviderType = ({children}) => {
         unmountQuizPage,
         addQuestionAnswer,
         clearForRetest,
+        convertQuizRecord,
       }}>
       {children}
     </QuizContext.Provider>

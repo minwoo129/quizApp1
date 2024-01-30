@@ -1,4 +1,5 @@
 import {QuestionAnswer} from '../../component/common/CommonQuestionGrid/types';
+import {QuizRecord} from '../../redux/state/AdditionalTypes';
 
 export type QuizContextType = {
   state: QuizContextState;
@@ -6,6 +7,7 @@ export type QuizContextType = {
   unmountQuizPage(): void;
   addQuestionAnswer: addQuestionAnswer;
   clearForRetest(): void;
+  convertQuizRecord(endTime: string): QuizRecord;
 };
 
 export type QuizContextState = {
