@@ -5,7 +5,7 @@ import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
 import Body from './childrens/Body';
 
-const IncorrectNote = () => {
+const QuizIncorrectNote = () => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
 
   const onPressBack = () => {
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(IncorrectNote);
+export default React.memo(QuizIncorrectNote);

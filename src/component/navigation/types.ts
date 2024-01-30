@@ -1,3 +1,4 @@
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
@@ -20,9 +21,10 @@ export type RootStackRouteProp<T extends RootStackPages> = RouteProp<
 export interface MainStackNavigatorProps {}
 
 export type MainStackPageParams = {
+  MainTabNavigator: undefined;
   Home: undefined;
   QuizPage: undefined;
-  IncorrectNote: undefined;
+  QuizIncorrectNote: undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackPageParams>;
@@ -31,5 +33,23 @@ export type MainStackPages = keyof MainStackPageParams;
 
 export type MainStackRouteProp<T extends MainStackPages> = RouteProp<
   MainStackPageParams,
+  T
+>;
+
+// ================================================================
+export interface MainTabNavigatorProps {}
+
+export type MainTabPageParams = {
+  HomeContainer: undefined;
+  AnalizeContainer: undefined;
+  IncorrectNoteContainer: undefined;
+};
+
+export type MainTabNavigation = BottomTabNavigationProp<MainTabPageParams>;
+
+export type MainTabPages = keyof MainTabPageParams;
+
+export type MainTabRouteProp<T extends MainTabPages> = RouteProp<
+  MainTabPageParams,
   T
 >;

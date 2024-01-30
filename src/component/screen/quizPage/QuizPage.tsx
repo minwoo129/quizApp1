@@ -92,7 +92,7 @@ const QuizPage = () => {
   };
 
   const onPressIncorrectNote = () => {
-    mainStackNavigation.navigate('IncorrectNote');
+    mainStackNavigation.navigate('QuizIncorrectNote');
   };
 
   return (

@@ -4,7 +4,8 @@ import {MainStackNavigatorProps, MainStackPageParams} from './types';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screen/home/Home';
 import QuizPage from '../screen/quizPage/QuizPage';
-import IncorrectNote from '../screen/incorrectNote/IncorrectNote';
+import QuizIncorrectNote from '../screen/quizIncorrectNote/QuizIncorrectNote';
+import MainTabNavigator from './MainTabNavigator';
 
 const Stack = createStackNavigator<MainStackPageParams>();
 
@@ -13,9 +14,10 @@ const MainStackNavigator: FC<MainStackNavigatorProps> = ({}) => {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{headerShown: false}}>
+      <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="QuizPage" component={QuizPage} />
-      <Stack.Screen name="IncorrectNote" component={IncorrectNote} />
+      <Stack.Screen name="QuizIncorrectNote" component={QuizIncorrectNote} />
     </Stack.Navigator>
   );
 };
