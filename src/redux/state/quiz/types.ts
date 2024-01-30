@@ -55,4 +55,6 @@ export type IncorrectQuizRecord = {
   createdAt: string;
   question: QuestionAnswer;
   idx: number;
+  quizIdx: number;
+  answerIdx: number;
 };

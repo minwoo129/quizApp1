@@ -10,7 +10,6 @@ import {createPromiseThunk} from '../../lib/AsyncUtils';
 import {
   ConvertIncorrectQuizRecord,
   ConvertQuestions,
-  FilterIncorrectQuestions,
 } from './additionalFunctions';
 import {setStorageData} from '../../../storage';
 

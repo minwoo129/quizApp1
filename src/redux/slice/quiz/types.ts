@@ -21,8 +21,3 @@ type setQuizRecordsArgs = {
 };
 
 export type addQuizRecordAction = PayloadAction<QuizRecord>;
-
-export type IncorrectQuizOrignalRecord = {
-  createdAt: string;
-  question: QuestionAnswer;
-};
