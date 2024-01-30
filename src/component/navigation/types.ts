@@ -22,7 +22,6 @@ export interface MainStackNavigatorProps {}
 
 export type MainStackPageParams = {
   MainTabNavigator: undefined;
-  Home: undefined;
   QuizPage: undefined;
   QuizIncorrectNote: undefined;
 };
@@ -53,3 +52,12 @@ export type MainTabRouteProp<T extends MainTabPages> = RouteProp<
   MainTabPageParams,
   T
 >;
+
+export interface TabBarIconProps {
+  focused: boolean;
+  pageName: MainTabPages;
+}
+
+export type TabBarIconLabel = {
+  [key in MainTabPages]: string;
+};

@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import IncorrectNote from '../screen/incorrectNote/IncorrectNote';
 
 interface IncorrectNoteContainerProps {}
 
 const IncorrectNoteContainer: FC<IncorrectNoteContainerProps> = ({}) => {
-  return (
-    <View style={styles.container}>
-      <Text>IncorrectNoteContainer</Text>
-    </View>
-  );
+  return <IncorrectNote />;
 };
 
 const styles = StyleSheet.create({

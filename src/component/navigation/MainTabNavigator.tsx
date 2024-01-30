@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeContainer from '../container/HomeContainer';
 import AnalizeContainer from '../container/AnalizeContainer';
 import IncorrectNoteContainer from '../container/IncorrectNoteContainer';
+import TabBarIcon from './TabBarIcon';
 
 const Tab = createBottomTabNavigator<MainTabPageParams>();
 
@@ -27,11 +28,37 @@ const MainTabNavigator: FC<MainTabNavigatorProps> = ({}) => {
         },
         tabBarHideOnKeyboard: true,
       }}>
-      <Tab.Screen name="HomeContainer" component={HomeContainer} />
-      <Tab.Screen name="AnalizeContainer" component={AnalizeContainer} />
+      <Tab.Screen
+        name="HomeContainer"
+        component={HomeContainer}
+        options={{
+          tabBarLabel: '홈',
+          tabBarIcon: ({focused}) => {
+            return <TabBarIcon focused={focused} pageName="HomeContainer" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="AnalizeContainer"
+        component={AnalizeContainer}
+        options={{
+          tabBarLabel: '분석',
+          tabBarIcon: ({focused}) => {
+            return <TabBarIcon focused={focused} pageName="AnalizeContainer" />;
+          },
+        }}
+      />
       <Tab.Screen
         name="IncorrectNoteContainer"
         component={IncorrectNoteContainer}
+        options={{
+          tabBarLabel: '오답노트',
+          tabBarIcon: ({focused}) => {
+            return (
+              <TabBarIcon focused={focused} pageName="IncorrectNoteContainer" />
+            );
+          },
+        }}
       />
     </Tab.Navigator>
   );

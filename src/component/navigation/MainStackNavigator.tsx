@@ -12,10 +12,9 @@ const Stack = createStackNavigator<MainStackPageParams>();
 const MainStackNavigator: FC<MainStackNavigatorProps> = ({}) => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="MainTabNavigator"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
-      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="QuizPage" component={QuizPage} />
       <Stack.Screen name="QuizIncorrectNote" component={QuizIncorrectNote} />
     </Stack.Navigator>

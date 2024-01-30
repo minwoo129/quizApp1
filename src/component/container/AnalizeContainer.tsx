@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import Analize from '../screen/analize/Analize';
 
 interface AnalizeContainerProps {}
 
 const AnalizeContainer: FC<AnalizeContainerProps> = ({}) => {
-  return (
-    <View style={styles.container}>
-      <Text>AnalizeContainer</Text>
-    </View>
-  );
+  return <Analize />;
 };
 
 const styles = StyleSheet.create({
