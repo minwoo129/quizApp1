@@ -9,3 +9,5 @@ export type getQuestionsResponse = {
 export type clearQuizDataAction = PayloadAction<undefined>;
 
 export type setQuizRecordsAction = PayloadAction<QuizRecord[]>;
+
+export type addQuizRecordAction = PayloadAction<QuizRecord>;

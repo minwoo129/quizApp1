@@ -1,12 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {quizInitialState as initialState} from '../../state';
 import {
+  addQuizRecordAction,
   clearQuizDataAction,
   getQuestionsResponse,
   setQuizRecordsAction,
 } from './types';
 import {createPromiseThunk} from '../../lib/AsyncUtils';
 import {ConvertQuestions} from './additionalFunctions';
+import {setStorageData} from '../../../storage';
 
 /**
  * ============ Redux 액션 생성 함수 ============
@@ -30,6 +32,16 @@ const quizSlice = createSlice({
     setQuizRecords: (state, action: setQuizRecordsAction) => {
       state.quizRecords = action.payload;
     },
+    addQuizRecord: (state, action: addQuizRecordAction) => {
+      let newRecords = [...state.quizRecords];
+      newRecords.push(action.payload);
+      state.quizRecords = newRecords;
+
+      setStorageData({
+        key: 'quizRecord',
+        value: {records: newRecords, totalElements: newRecords.length},
+      });
+    },
   },
   extraReducers: builder => {
     // getQuestions =============================================================
@@ -45,4 +57,4 @@ const quizSlice = createSlice({
 });
 
 export default quizSlice.reducer;
-export const {clearQuizData, setQuizRecords} = quizSlice.actions;
+export const {clearQuizData, setQuizRecords, addQuizRecord} = quizSlice.actions;
