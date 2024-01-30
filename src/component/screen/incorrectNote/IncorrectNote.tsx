@@ -3,6 +3,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {MainStackNavigation} from '../../navigation/types';
 import Header from './Header';
+import Body from './childrens/Body';
 
 const IncorrectNote = () => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
@@ -13,7 +14,7 @@ const IncorrectNote = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header onPressBack={onPressBack} />
-      <View style={styles.body}></View>
+      <Body />
     </SafeAreaView>
   );
 };
@@ -22,11 +23,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  body: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
