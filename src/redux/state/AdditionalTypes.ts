@@ -6,4 +6,5 @@ export type {
   Categorys,
   QuizRecord,
   QuizRecordResult,
+  IncorrectQuizRecord,
 } from './quiz/types';

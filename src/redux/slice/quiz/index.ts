@@ -7,7 +7,10 @@ import {
   setQuizRecordsAction,
 } from './types';
 import {createPromiseThunk} from '../../lib/AsyncUtils';
-import {ConvertQuestions} from './additionalFunctions';
+import {
+  ConvertQuestions,
+  FilterIncorrectQuestions,
+} from './additionalFunctions';
 import {setStorageData} from '../../../storage';
 
 /**
@@ -31,11 +34,13 @@ const quizSlice = createSlice({
     },
     setQuizRecords: (state, action: setQuizRecordsAction) => {
       state.quizRecords = action.payload;
+      state.incorrectQuizRecords = FilterIncorrectQuestions(action.payload);
     },
     addQuizRecord: (state, action: addQuizRecordAction) => {
       let newRecords = [...state.quizRecords];
       newRecords.push(action.payload);
       state.quizRecords = newRecords;
+      state.incorrectQuizRecords = FilterIncorrectQuestions(newRecords);
 
       setStorageData({
         key: 'quizRecord',

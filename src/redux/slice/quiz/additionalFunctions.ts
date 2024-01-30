@@ -1,5 +1,10 @@
 import _ from 'lodash';
-import {Question, QuestionItem} from '../../state/AdditionalTypes';
+import {
+  IncorrectQuizRecord,
+  Question,
+  QuestionItem,
+  QuizRecord,
+} from '../../state/AdditionalTypes';
 
 export const ConvertQuestions = (questions: Question[]) => {
   let newItems: QuestionItem[] = [];
@@ -15,4 +20,20 @@ export const ConvertQuestions = (questions: Question[]) => {
     });
   }
   return newItems;
+};
+
+export const FilterIncorrectQuestions = (records: QuizRecord[]) => {
+  let incorrectRecords: IncorrectQuizRecord[] = [];
+  for (let record of records) {
+    const {questionAnswers, createdAt} = record;
+    const filterdAnswers = questionAnswers.filter(item => !item.isPass);
+    for (let answer of filterdAnswers) {
+      incorrectRecords.push({
+        createdAt,
+        question: answer,
+      });
+    }
+  }
+
+  return incorrectRecords;
 };

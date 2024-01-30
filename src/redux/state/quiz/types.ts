@@ -7,6 +7,8 @@ export type initialStateType = {
   categorys: Categorys;
   /** 퀴즈 기록 */
   quizRecords: QuizRecord[];
+  /** 오답 기록 */
+  incorrectQuizRecords: IncorrectQuizRecord[];
 };
 
 export interface Question {
@@ -48,3 +50,8 @@ export interface QuizRecordResult {
   correctCount: number;
   wrongCount: number;
 }
+
+export type IncorrectQuizRecord = {
+  createdAt: string;
+  question: QuestionAnswer;
+};

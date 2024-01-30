@@ -21,4 +21,6 @@ export const initialState: initialStateType = {
   },
   /** 퀴즈 기록 */
   quizRecords: [],
+  /** 오답 기록 */
+  incorrectQuizRecords: [],
 };
