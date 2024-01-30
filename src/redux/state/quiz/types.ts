@@ -1,8 +1,12 @@
+import {QuestionAnswer} from '../../../component/common/CommonQuestionGrid/types';
+
 export type initialStateType = {
   /** 질문 목록 */
   questions: QuestionItem[] | null;
   /** 질문 카테고리 목록 */
   categorys: Categorys;
+  /** 퀴즈 기록 */
+  quizRecords: QuizRecord[];
 };
 
 export interface Question {
@@ -30,3 +34,17 @@ export interface QuestionItem extends Question {
 export type Categorys = {
   [key in string]: number;
 };
+
+export interface QuizRecord {
+  startTime: string;
+  endTime: string;
+  createdAt: string;
+  idx: number;
+  questionAnswers: QuestionAnswer[];
+  result: QuizRecordResult;
+}
+
+export interface QuizRecordResult {
+  correctCount: number;
+  wrongCount: number;
+}

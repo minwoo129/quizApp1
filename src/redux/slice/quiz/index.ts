@@ -1,6 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {quizInitialState as initialState} from '../../state';
-import {clearQuizDataAction, getQuestionsResponse} from './types';
+import {
+  clearQuizDataAction,
+  getQuestionsResponse,
+  setQuizRecordsAction,
+} from './types';
 import {createPromiseThunk} from '../../lib/AsyncUtils';
 import {ConvertQuestions} from './additionalFunctions';
 
@@ -23,6 +27,9 @@ const quizSlice = createSlice({
     clearQuizData: (state, action: clearQuizDataAction) => {
       state.questions = null;
     },
+    setQuizRecords: (state, action: setQuizRecordsAction) => {
+      state.quizRecords = action.payload;
+    },
   },
   extraReducers: builder => {
     // getQuestions =============================================================
@@ -38,4 +45,4 @@ const quizSlice = createSlice({
 });
 
 export default quizSlice.reducer;
-export const {clearQuizData} = quizSlice.actions;
+export const {clearQuizData, setQuizRecords} = quizSlice.actions;

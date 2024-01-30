@@ -2,9 +2,9 @@ import {getStorageDataType, setStorageDataType} from './types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const setStorageData: setStorageDataType = async args => {
-  const {key} = args;
+  const {key, value} = args;
   try {
-    const jsonValue = JSON.stringify(args);
+    const jsonValue = JSON.stringify(value);
     await AsyncStorage.mergeItem(key, jsonValue);
   } catch (e) {
     console.log(e);

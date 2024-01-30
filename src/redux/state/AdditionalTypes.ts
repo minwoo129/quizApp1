@@ -4,4 +4,6 @@ export type {
   QuestionItem,
   difficultyType,
   Categorys,
+  QuizRecord,
+  QuizRecordResult,
 } from './quiz/types';

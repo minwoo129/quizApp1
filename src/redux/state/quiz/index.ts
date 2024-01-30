@@ -19,4 +19,6 @@ export const initialState: initialStateType = {
     History: 23,
     Vehicles: 28,
   },
+  /** 퀴즈 기록 */
+  quizRecords: [],
 };
