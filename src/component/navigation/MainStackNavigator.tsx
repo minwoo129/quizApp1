@@ -6,6 +6,7 @@ import Home from '../screen/home/Home';
 import QuizPage from '../screen/quizPage/QuizPage';
 import QuizIncorrectNote from '../screen/quizIncorrectNote/QuizIncorrectNote';
 import MainTabNavigator from './MainTabNavigator';
+import IncorrectDetail from '../screen/incorrectDetail/IncorrectDetail';
 
 const Stack = createStackNavigator<MainStackPageParams>();
 
@@ -17,6 +18,7 @@ const MainStackNavigator: FC<MainStackNavigatorProps> = ({}) => {
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
       <Stack.Screen name="QuizPage" component={QuizPage} />
       <Stack.Screen name="QuizIncorrectNote" component={QuizIncorrectNote} />
+      <Stack.Screen name="IncorrectDetail" component={IncorrectDetail} />
     </Stack.Navigator>
   );
 };

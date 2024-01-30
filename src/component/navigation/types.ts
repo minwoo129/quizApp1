@@ -24,6 +24,7 @@ export type MainStackPageParams = {
   MainTabNavigator: undefined;
   QuizPage: undefined;
   QuizIncorrectNote: undefined;
+  IncorrectDetail: undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackPageParams>;
