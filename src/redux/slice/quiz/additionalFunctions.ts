@@ -30,7 +30,7 @@ export const ConvertIncorrectQuizRecord = (
   const withIdxAnswers = newRecord.questionAnswers.map((item, idx) => {
     return {
       ...item,
-      answerIdx: idx + 1,
+      answerIdx: idx,
     };
   });
   const filteredAnswers = withIdxAnswers.filter(item => !item.isPass);
