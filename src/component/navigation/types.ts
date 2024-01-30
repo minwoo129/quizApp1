@@ -53,7 +53,9 @@ export type MainTabRouteProp<T extends MainTabPages> = RouteProp<
   T
 >;
 
-export interface TabBarIconProps {
+export interface TabBarIconProps extends TabBarIconImageProps {}
+
+export interface TabBarIconImageProps {
   focused: boolean;
   pageName: MainTabPages;
 }
