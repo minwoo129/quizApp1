@@ -1,11 +1,19 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header from './Header';
+import CategoryAnalizeChart from './charts/CategoryAnalizeChart';
 
 const Analize = ({navigation, route}: any) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.scrollInsideView}>
+          <CategoryAnalizeChart />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
