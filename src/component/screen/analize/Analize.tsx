@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header from './Header';
 import CategoryAnalizeChart from './charts/CategoryAnalizeChart';
+import CorrectAnalizeChart from './charts/CorrectAnalizeChart';
 
 const Analize = ({navigation, route}: any) => {
   return (
@@ -12,6 +13,7 @@ const Analize = ({navigation, route}: any) => {
         showsVerticalScrollIndicator={false}>
         <View style={styles.scrollInsideView}>
           <CategoryAnalizeChart />
+          <CorrectAnalizeChart />
         </View>
       </ScrollView>
     </SafeAreaView>
