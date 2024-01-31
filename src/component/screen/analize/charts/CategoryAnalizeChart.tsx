@@ -29,28 +29,33 @@ const CategoryAnalizeChart: FC<CategoryAnalizeChartProps> = ({}) => {
 
   return (
     <View style={styles.container}>
-      <PieChart
-        data={analizeCategorys}
-        showText
-        textColor="black"
-        radius={60}
-        textSize={20}
-        focusOnPress
-        showValuesAsLabels
-        showTextBackground
-        textBackgroundRadius={12}
-      />
+      <Text style={styles.title}>{'카테고리별 문제 풀이 비율'}</Text>
+      <View style={styles.contentView}>
+        <PieChart
+          data={analizeCategorys}
+          showText
+          textColor="black"
+          radius={60}
+          textSize={20}
+          focusOnPress
+          showValuesAsLabels
+          showTextBackground
+          textBackgroundRadius={12}
+        />
 
-      <View style={styles.dataView}>
-        {analizeCategorys.map((item, index) => {
-          const {color, label} = item;
-          return (
-            <View key={index} style={styles.dataItemView}>
-              <View style={[styles.dataItemColor, {backgroundColor: color}]} />
-              <Text>{label}</Text>
-            </View>
-          );
-        })}
+        <View style={styles.dataView}>
+          {analizeCategorys.map((item, index) => {
+            const {color, label} = item;
+            return (
+              <View key={index} style={styles.dataItemView}>
+                <View
+                  style={[styles.dataItemColor, {backgroundColor: color}]}
+                />
+                <Text>{label}</Text>
+              </View>
+            );
+          })}
+        </View>
       </View>
     </View>
   );
@@ -78,6 +83,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     ...shadow,
     marginTop: 16,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#212121',
+  },
+  contentView: {
+    width: '100%',
     flexDirection: 'row',
   },
   emptyView: {
