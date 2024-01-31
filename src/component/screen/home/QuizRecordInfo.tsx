@@ -36,11 +36,11 @@ const QuizRecordInfo: FC<QuizRecordInfoProps> = ({}) => {
       <Text style={styles.infoTxt}>{infoTxt}</Text>
       <View style={styles.insideView}>
         <Text style={styles.insideDataTxt}>
-          <Text style={{color: '#757575'}}>{'정답률: '}</Text>
+          <Text style={{color: '#757575'}}>{'정답: '}</Text>
           <Text style={{color: AppColor.text.correct}}>{`${corrects}건`}</Text>
         </Text>
         <Text style={styles.insideDataTxt}>
-          <Text style={{color: '#757575'}}>{'오답률: '}</Text>
+          <Text style={{color: '#757575'}}>{'오답: '}</Text>
           <Text style={{color: AppColor.text.wrong}}>{`${incorrects}건`}</Text>
         </Text>
       </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     ...shadow,
   },
   infoTxt: {
-    fontSize: 16,
+    fontSize: 24,
     color: '#212121',
   },
   insideView: {
@@ -81,9 +81,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    marginTop: 12,
   },
   insideDataTxt: {
-    fontSize: 14,
+    fontSize: 17,
     marginRight: 12,
   },
   emptyView: {
