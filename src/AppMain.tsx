@@ -7,6 +7,7 @@ import {useAppDispatch} from './hooks';
 import {getStorageData} from './storage';
 import {QuizRecordData} from './storage/types';
 import {setQuizRecords} from './redux/slice/quiz';
+import {updateAnalizeData} from './redux/slice/analize';
 
 const AppMain: FC<AppMainProps> = ({}) => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ const AppMain: FC<AppMainProps> = ({}) => {
             incorrectRecords: quizRecords.incorrectRecords,
           }),
         );
+        dispatch(updateAnalizeData(quizRecords.records));
       }
     } catch (e) {}
   };

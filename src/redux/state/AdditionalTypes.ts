@@ -8,3 +8,5 @@ export type {
   QuizRecordResult,
   IncorrectQuizRecord,
 } from './quiz/types';
+// ================================ Analize ================================
+export type {AnalizeCategory, AnalizeCorrect} from './analize/types';
