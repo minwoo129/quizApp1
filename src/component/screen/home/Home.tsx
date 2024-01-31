@@ -1,8 +1,16 @@
 import React, {FC} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {HomeProps} from './types';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
+import QuizRecordInfo from './QuizRecordInfo';
 
 const Home: FC<HomeProps> = ({}) => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
@@ -11,20 +19,28 @@ const Home: FC<HomeProps> = ({}) => {
     mainStackNavigation.navigate('QuizPage');
   };
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <TouchableOpacity onPress={onPressQuiz}>
-        <Text>퀴즈 풀기</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.scrollInsideView}>
+          <QuizRecordInfo />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollInsideView: {
+    width: '100%',
+    paddingHorizontal: 16,
   },
 });
 
