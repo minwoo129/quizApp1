@@ -25,11 +25,13 @@ const analizeSlice = createSlice({
         questions = [...questionAnswers, ...questions];
       }
       // categorys =====================================================
+      const colorCodes = [AppColor.main, '#3498db', '#f1c40f', '#e67e22'];
+      let colorIndex = 0;
       for (let [key, value] of categoryMap) {
         newCategorys.push({
           value,
           label: key,
-          color: AppColor.main,
+          color: colorCodes[colorIndex++],
         });
       }
 

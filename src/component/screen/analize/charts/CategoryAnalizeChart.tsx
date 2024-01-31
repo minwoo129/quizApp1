@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Platform, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {CategoryAnalizeChartProps} from './types';
 import {useAppSelector} from '../../../../hooks';
-import {BarChart} from 'react-native-gifted-charts';
+import {BarChart, PieChart} from 'react-native-gifted-charts';
 
 const CategoryAnalizeChart: FC<CategoryAnalizeChartProps> = ({}) => {
   const analizeCategorys = useAppSelector(
@@ -29,18 +29,29 @@ const CategoryAnalizeChart: FC<CategoryAnalizeChartProps> = ({}) => {
 
   return (
     <View style={styles.container}>
-      <BarChart
-        showFractionalValues
-        showYAxisIndices
-        showXAxisIndices
-        hideRules
-        noOfSections={5}
+      <PieChart
         data={analizeCategorys}
-        showGradient
-        frontColor={'#1B6BB0'}
-        gradientColor={'#FFEEFE'}
-        backgroundColor={'#FECF9E'}
+        showText
+        textColor="black"
+        radius={60}
+        textSize={20}
+        focusOnPress
+        showValuesAsLabels
+        showTextBackground
+        textBackgroundRadius={12}
       />
+
+      <View style={styles.dataView}>
+        {analizeCategorys.map((item, index) => {
+          const {color, label} = item;
+          return (
+            <View key={index} style={styles.dataItemView}>
+              <View style={[styles.dataItemColor, {backgroundColor: color}]} />
+              <Text>{label}</Text>
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 };
@@ -67,6 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     ...shadow,
     marginTop: 16,
+    flexDirection: 'row',
   },
   emptyView: {
     width: '100%',
@@ -82,6 +94,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#757575',
     textAlign: 'center',
+  },
+  dataView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 12,
+  },
+  dataItemView: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dataItemColor: {
+    width: 12,
+    height: 12,
+    marginRight: 8,
+  },
+  dataItemTxt: {
+    fontSize: 12,
+    color: '#757575',
   },
 });
 
