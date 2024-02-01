@@ -1,8 +1,6 @@
-import React, {FC, useContext} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {FC} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {QuizResultProps} from '../types';
-import QuizContext from '../../../../contexts/QuizContext';
-import {AppColor} from '../../../common/Styles';
 import TakenTime from '../childrens/TakenTime';
 import QuizResultCount from '../childrens/QuizResultCount';
 import QuizDetailResult from '../childrens/QuizDetailResult';
@@ -13,8 +11,6 @@ const QuizResult: FC<QuizResultProps> = ({
   onPressRetest,
   onPressIncorrectNote,
 }) => {
-  const {state} = useContext(QuizContext);
-
   if (!visible) return null;
   return (
     <View style={styles.container}>
