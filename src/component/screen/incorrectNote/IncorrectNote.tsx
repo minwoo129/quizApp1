@@ -3,6 +3,7 @@ import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {useAppSelector} from '../../../hooks';
 import Header from './Header';
 import Body from './Body';
+import {onPressQuizItem} from './types';
 
 const IncorrectNote = () => {
   const incorrectQuizRecords = useAppSelector(
@@ -10,12 +11,17 @@ const IncorrectNote = () => {
   );
   const quizRecords = useAppSelector(state => state.quiz.quizRecords);
 
+  const onPressQuizItem: onPressQuizItem = item => {
+    console.log('onPressQuizItem', item);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
       <Body
         incorrectQuizRecords={incorrectQuizRecords}
         quizRecords={quizRecords}
+        onPressQuizItem={onPressQuizItem}
       />
     </SafeAreaView>
   );

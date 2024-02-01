@@ -3,7 +3,11 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {BodyProps} from './types';
 import IncorrectQuizItem from './IncorrectQuizItem';
 
-const Body: FC<BodyProps> = ({incorrectQuizRecords, quizRecords}) => {
+const Body: FC<BodyProps> = ({
+  incorrectQuizRecords,
+  quizRecords,
+  onPressQuizItem,
+}) => {
   if (quizRecords.length === 0) {
     return (
       <View style={styles.container}>
@@ -34,6 +38,7 @@ const Body: FC<BodyProps> = ({incorrectQuizRecords, quizRecords}) => {
             <IncorrectQuizItem
               record={item.item}
               isLastIdx={item.index === incorrectQuizRecords.length - 1}
+              onPressQuizItem={onPressQuizItem}
             />
           );
         }}

@@ -10,14 +10,20 @@ import {
 import {IncorrectQuizItemProps} from './types';
 import dayjs from 'dayjs';
 
-const IncorrectQuizItem: FC<IncorrectQuizItemProps> = ({record, isLastIdx}) => {
+const IncorrectQuizItem: FC<IncorrectQuizItemProps> = ({
+  record,
+  isLastIdx,
+  onPressQuizItem,
+}) => {
   const {question, idx, createdAt, quizIdx, answerIdx} = record;
   const {category} = question;
 
   const createdAtTxt = dayjs(createdAt).format('YYYY년 MM월 DD일');
   const marginBottom = isLastIdx ? 12 : 0;
   return (
-    <TouchableOpacity style={[styles.container, {marginBottom}]}>
+    <TouchableOpacity
+      style={[styles.container, {marginBottom}]}
+      onPress={() => onPressQuizItem(record)}>
       <Text style={styles.quizNumTxt}>{`${quizIdx + 1}회 ${
         answerIdx + 1
       }번`}</Text>
