@@ -4,6 +4,7 @@ import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {MainStackNavigation, MainStackRouteProp} from '../../navigation/types';
 import Header from './Header';
 import QuizInfo from './QuizInfo';
+import QuizExplan from './QuizExplan';
 
 const IncorrectDetail = () => {
   const route = useRoute<MainStackRouteProp<'IncorrectDetail'>>();
@@ -17,6 +18,7 @@ const IncorrectDetail = () => {
       <Header onPressBack={onPressBack} />
       <View style={styles.insideView}>
         <QuizInfo record={route.params.record} />
+        <QuizExplan record={route.params.record} />
       </View>
     </SafeAreaView>
   );

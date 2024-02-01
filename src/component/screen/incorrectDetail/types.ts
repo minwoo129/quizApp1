@@ -7,3 +7,7 @@ export interface HeaderProps {
 export interface QuizInfoProps {
   record: IncorrectQuizRecord;
 }
+
+export interface QuizExplanProps {
+  record: IncorrectQuizRecord;
+}
