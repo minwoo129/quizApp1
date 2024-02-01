@@ -5,6 +5,6 @@ module.exports = {
     '/.(jpg|jpeg|png|gif|webp|svg)$': './__mocks__/fileMock.js',
   },
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.js$': 'babel-jest',
   },
 };
