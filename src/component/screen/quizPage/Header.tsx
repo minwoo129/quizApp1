@@ -15,12 +15,16 @@ const Header: FC<HeaderProps> = ({onPressBack}) => {
         },
       ]}
       centerElements={[{type: 'headerTitle', title: '퀴즈풀기'}]}
+      customStyle={styles.container}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    borderColor: '#e0e0e0',
+    borderBottomWidth: 1,
+  },
 });
 
 export default React.memo(Header);

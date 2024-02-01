@@ -7,12 +7,16 @@ const Header: FC<HeaderProps> = ({}) => {
   return (
     <CommonHeader
       centerElements={[{type: 'headerTitle', title: '결과 분석'}]}
+      customStyle={styles.container}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    borderColor: '#e0e0e0',
+    borderBottomWidth: 1,
+  },
 });
 
 export default React.memo(Header);
