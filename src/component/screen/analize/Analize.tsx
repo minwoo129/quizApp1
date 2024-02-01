@@ -14,6 +14,8 @@ const Analize = ({navigation, route}: any) => {
         <View style={styles.scrollInsideView}>
           <CategoryAnalizeChart />
           <CorrectAnalizeChart />
+
+          <View style={styles.underEmptyView} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -31,6 +33,10 @@ const styles = StyleSheet.create({
   scrollInsideView: {
     width: '100%',
     paddingHorizontal: 16,
+  },
+  underEmptyView: {
+    width: '100%',
+    height: 20,
   },
 });
 

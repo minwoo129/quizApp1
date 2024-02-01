@@ -1,5 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {Alert, BackHandler, SafeAreaView, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {
   addQuizRecord,
@@ -43,6 +43,16 @@ const QuizPage = () => {
       unmountQuizPage();
     };
   }, []);
+  useEffect(() => {
+    const backHander = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onPressBack,
+    );
+
+    return () => {
+      backHander.remove();
+    };
+  }, [page]);
 
   const _getQuestions = async () => {
     setLoading(true);
@@ -69,7 +79,29 @@ const QuizPage = () => {
   };
 
   const onPressBack = () => {
-    mainStackNavigation.goBack();
+    if (page === 0 || page == 2) {
+      mainStackNavigation.goBack();
+      return true;
+    }
+
+    Alert.alert(
+      '퀴즈를 종료하시겠습니까?',
+      '지금까지 푼 문제 결과는 저장되지 않습니다.',
+      [
+        {
+          text: '취소',
+          onPress: () => {},
+        },
+        {
+          text: '종료',
+          onPress: () => {
+            mainStackNavigation.goBack();
+          },
+        },
+      ],
+    );
+
+    return true;
   };
 
   const onPressQuizStart = () => {

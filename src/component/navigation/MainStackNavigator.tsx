@@ -16,7 +16,11 @@ const MainStackNavigator: FC<MainStackNavigatorProps> = ({}) => {
       initialRouteName="MainTabNavigator"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
-      <Stack.Screen name="QuizPage" component={QuizPage} />
+      <Stack.Screen
+        name="QuizPage"
+        component={QuizPage}
+        options={{gestureEnabled: false}}
+      />
       <Stack.Screen name="QuizIncorrectNote" component={QuizIncorrectNote} />
       <Stack.Screen name="IncorrectDetail" component={IncorrectDetail} />
     </Stack.Navigator>
