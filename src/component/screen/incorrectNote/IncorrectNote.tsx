@@ -4,15 +4,18 @@ import {useAppSelector} from '../../../hooks';
 import Header from './Header';
 import Body from './Body';
 import {onPressQuizItem} from './types';
+import {useNavigation} from '@react-navigation/native';
+import {MainStackNavigation} from '../../navigation/types';
 
 const IncorrectNote = () => {
+  const mainStackNavigation = useNavigation<MainStackNavigation>();
   const incorrectQuizRecords = useAppSelector(
     state => state.quiz.incorrectQuizRecords,
   );
   const quizRecords = useAppSelector(state => state.quiz.quizRecords);
 
   const onPressQuizItem: onPressQuizItem = item => {
-    console.log('onPressQuizItem', item);
+    mainStackNavigation.navigate('IncorrectDetail', {record: item});
   };
 
   return (
