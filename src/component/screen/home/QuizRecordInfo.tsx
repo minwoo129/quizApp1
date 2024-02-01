@@ -33,6 +33,7 @@ const QuizRecordInfo: FC<QuizRecordInfoProps> = ({}) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>오늘까지의 퀴즈 결과</Text>
       <Text style={styles.infoTxt}>{infoTxt}</Text>
       <View style={styles.insideView}>
         <Text style={styles.insideDataTxt}>
@@ -64,7 +65,6 @@ const shadow = Platform.select<ViewStyle>({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 120,
     paddingHorizontal: 16,
     paddingVertical: 16,
     backgroundColor: '#fff',
@@ -72,9 +72,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     ...shadow,
   },
-  infoTxt: {
+  title: {
     fontSize: 24,
     color: '#212121',
+  },
+  infoTxt: {
+    fontSize: 18,
+    color: '#212121',
+    marginTop: 12,
   },
   insideView: {
     width: '100%',
