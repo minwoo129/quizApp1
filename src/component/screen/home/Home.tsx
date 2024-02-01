@@ -12,6 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import QuizRecordInfo from './QuizRecordInfo';
 import QuizStartBtn from './QuizStartBtn';
+import Header from './Header';
 
 const Home: FC<HomeProps> = ({}) => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
@@ -22,6 +23,7 @@ const Home: FC<HomeProps> = ({}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <ScrollView style={styles.scrollView}>
         <View style={styles.scrollInsideView}>
           <QuizRecordInfo />
