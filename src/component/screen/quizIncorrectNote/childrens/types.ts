@@ -5,9 +5,4 @@ export interface QuizItemProps {
   idx: number;
 }
 
-export interface QuizItemBadgeProps {
-  isSelected: boolean;
-  isCorrect: boolean;
-}
-
 export interface BodyProps {}

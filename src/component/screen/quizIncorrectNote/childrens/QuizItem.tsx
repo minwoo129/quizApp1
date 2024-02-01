@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {QuizItemBadgeProps, QuizItemProps} from './types';
-import {AppColor} from '../../../common/Styles';
+import {QuizItemProps} from './types';
+import QuizItemBadge from '../../../common/QuizItemBadge';
 
 const QuizItem: FC<QuizItemProps> = ({question, idx}) => {
   const {isPass, answers, correct_answer, selectAnswer} = question;
@@ -28,18 +28,6 @@ const QuizItem: FC<QuizItemProps> = ({question, idx}) => {
       </View>
     </View>
   );
-};
-
-const QuizItemBadge: FC<QuizItemBadgeProps> = ({isSelected, isCorrect}) => {
-  if (isSelected) {
-    return <Text style={{color: AppColor.text.wrong}}>{'(선택한 답)'}</Text>;
-  }
-
-  if (isCorrect) {
-    return <Text style={{color: AppColor.text.correct}}>{'(정답)'}</Text>;
-  }
-
-  return null;
 };
 
 const styles = StyleSheet.create({
