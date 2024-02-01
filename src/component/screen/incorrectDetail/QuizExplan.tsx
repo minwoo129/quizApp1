@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {QuizExplanProps} from './types';
-import QuizItemBadge from '../../common/QuizItemBadge';
+import CommonQuizAnaswer from '../../common/CommonQuizAnaswer';
 
 const QuizExplan: FC<QuizExplanProps> = ({record}) => {
   const {answers, correct_answer, selectAnswer} = record.question;
@@ -9,13 +9,13 @@ const QuizExplan: FC<QuizExplanProps> = ({record}) => {
     <View style={styles.container}>
       {answers.map((item, idx) => {
         return (
-          <Text style={styles.answer} key={idx}>
-            <Text style={{color: '#757575'}}>{`${idx + 1}번: ${item} `}</Text>
-            <QuizItemBadge
-              isSelected={item === selectAnswer}
-              isCorrect={item === correct_answer}
-            />
-          </Text>
+          <CommonQuizAnaswer
+            answerIdx={idx + 1}
+            correctAnswer={correct_answer}
+            selectedAnswer={selectAnswer}
+            key={idx}>
+            {item}
+          </CommonQuizAnaswer>
         );
       })}
     </View>

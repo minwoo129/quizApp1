@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {QuizItemProps} from './types';
-import QuizItemBadge from '../../../common/QuizItemBadge';
+import CommonQuizAnaswer from '../../../common/CommonQuizAnaswer';
 
 const QuizItem: FC<QuizItemProps> = ({question, idx}) => {
   const {isPass, answers, correct_answer, selectAnswer} = question;
@@ -14,15 +14,13 @@ const QuizItem: FC<QuizItemProps> = ({question, idx}) => {
       <View style={styles.answerView}>
         {answers.map((item, index) => {
           return (
-            <Text style={styles.answer} key={index}>
-              <Text style={{color: '#757575'}}>{`${
-                index + 1
-              }번: ${item} `}</Text>
-              <QuizItemBadge
-                isSelected={item === selectAnswer}
-                isCorrect={item === correct_answer}
-              />
-            </Text>
+            <CommonQuizAnaswer
+              answerIdx={index + 1}
+              correctAnswer={correct_answer}
+              selectedAnswer={selectAnswer}
+              key={index}>
+              {item}
+            </CommonQuizAnaswer>
           );
         })}
       </View>
