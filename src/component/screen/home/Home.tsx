@@ -11,18 +11,22 @@ import {HomeProps} from './types';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigation} from '../../navigation/types';
 import QuizRecordInfo from './QuizRecordInfo';
+import QuizStartBtn from './QuizStartBtn';
 
 const Home: FC<HomeProps> = ({}) => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
 
-  const onPressQuiz = () => {
+  const onPressQuizStart = () => {
     mainStackNavigation.navigate('QuizPage');
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.scrollInsideView}>
           <QuizRecordInfo />
+
+          <QuizStartBtn onPressQuizStart={onPressQuizStart} />
         </View>
       </ScrollView>
     </SafeAreaView>
