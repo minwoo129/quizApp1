@@ -4,7 +4,10 @@ import {HeaderProps} from './types';
 import CommonHeader from '../../common/CommonHeader';
 import {IC_BACK} from '../../../../utils/icons';
 
-const Header: FC<HeaderProps> = ({onPressBack}) => {
+const Header: FC<HeaderProps> = ({onPressBack, page}) => {
+  let title = '퀴즈풀기';
+  if (page === 2) title = '채점 결과';
+
   return (
     <CommonHeader
       leftSideElements={[
@@ -14,7 +17,7 @@ const Header: FC<HeaderProps> = ({onPressBack}) => {
           onPress: onPressBack,
         },
       ]}
-      centerElements={[{type: 'headerTitle', title: '퀴즈풀기'}]}
+      centerElements={[{type: 'headerTitle', title}]}
       customStyle={styles.container}
     />
   );

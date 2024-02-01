@@ -80,13 +80,11 @@ const QuizPage = () => {
     const endTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
     setEndTime(endTime);
     const newRecord = convertQuizRecord(endTime);
-    console.log('newRecord', newRecord);
     dispatch(addQuizRecord(newRecord));
     setPage(2);
   };
 
   const onPressRetest = () => {
-    console.log('onPressRetest');
     clearForRetest();
     setPage(1);
   };
@@ -97,7 +95,7 @@ const QuizPage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header onPressBack={onPressBack} />
+      <Header onPressBack={onPressBack} page={page} />
 
       <SelectQuizInfo
         visible={page === 0}

@@ -3,6 +3,7 @@ import {QuizInfoFooterBtnProps, QuizResultFooterProps} from './childrens/types';
 
 export interface HeaderProps {
   onPressBack(): void;
+  page: number;
 }
 
 export interface SelectQuizInfoProps extends QuizInfoFooterBtnProps {
