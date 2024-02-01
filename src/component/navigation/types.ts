@@ -1,6 +1,7 @@
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {IncorrectQuizRecord} from '../../redux/state/AdditionalTypes';
 
 // ================================================================
 export interface RootStackNavigatiorProps {}
@@ -24,7 +25,7 @@ export type MainStackPageParams = {
   MainTabNavigator: undefined;
   QuizPage: undefined;
   QuizIncorrectNote: undefined;
-  IncorrectDetail: undefined;
+  IncorrectDetail: IncorrectDetailRoutType;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackPageParams>;
@@ -35,6 +36,10 @@ export type MainStackRouteProp<T extends MainStackPages> = RouteProp<
   MainStackPageParams,
   T
 >;
+
+export type IncorrectDetailRoutType = {
+  record: IncorrectQuizRecord;
+};
 
 // ================================================================
 export interface MainTabNavigatorProps {}
