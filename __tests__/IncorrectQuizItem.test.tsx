@@ -45,11 +45,27 @@ describe('IncorrectQuizItem', () => {
         onPressQuizItem={() => {}}
       />,
     );
-    const test = component.getByTestId('IncorrectQuizItemCreatedAt');
-    const componentValue = test.children[0];
+    const createdAtElement = component.getByTestId('createdAt');
+    const componentValue = createdAtElement.children[0];
     const createdAtTxt = dayjs(defaultRecord.createdAt).format(
       '푼 날짜: YYYY년 MM월 DD일',
     );
     expect(componentValue).toEqual(createdAtTxt);
+  });
+
+  it('카테고리가 정확하게 표시되는가?', () => {
+    const component = render(
+      <IncorrectQuizItem
+        record={defaultRecord}
+        isLastIdx={false}
+        onPressQuizItem={() => {}}
+      />,
+    );
+
+    const categoryElement = component.getByTestId('category');
+    const componentValue = categoryElement.children[0];
+    const categoryTxt = `카테고리: ${defaultRecord.question.category}`;
+
+    expect(componentValue).toEqual(categoryTxt);
   });
 });
