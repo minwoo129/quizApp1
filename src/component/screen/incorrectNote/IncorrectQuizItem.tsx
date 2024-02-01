@@ -27,7 +27,9 @@ const IncorrectQuizItem: FC<IncorrectQuizItemProps> = ({
       <Text style={styles.quizNumTxt}>{`${quizIdx + 1}회 ${
         answerIdx + 1
       }번`}</Text>
-      <Text style={styles.createdAt}>{`푼 날짜: ${createdAtTxt}`}</Text>
+      <Text
+        style={styles.createdAt}
+        testID="IncorrectQuizItemCreatedAt">{`푼 날짜: ${createdAtTxt}`}</Text>
       <Text style={styles.categoryTxt}>{`카테고리: ${category}`}</Text>
     </TouchableOpacity>
   );
