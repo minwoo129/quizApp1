@@ -16,6 +16,7 @@ import {convertGetQuestionsParams} from './ConvertData';
 import CommonLoading from '../../common/CommonLoading';
 import dayjs from 'dayjs';
 import QuizResult from './pages/QuizResult';
+import {updateAnalizeData} from '../../../redux/slice/analize';
 
 const QuizPage = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const QuizPage = () => {
   const mainStackNavigation = useNavigation<MainStackNavigation>();
 
   const categorys = useAppSelector(state => state.quiz.categorys);
+  const quizRecords = useAppSelector(state => state.quiz.quizRecords);
 
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -43,6 +45,9 @@ const QuizPage = () => {
       unmountQuizPage();
     };
   }, []);
+  useEffect(() => {
+    dispatch(updateAnalizeData(quizRecords));
+  }, [quizRecords]);
   useEffect(() => {
     const backHander = BackHandler.addEventListener(
       'hardwareBackPress',
